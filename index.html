@@ -90,6 +90,69 @@
   .howto ol{margin:0; padding-left:20px; font-size:13.5px; color:var(--text-2); line-height:1.95;}
   .howto ol b{color:var(--text); font-weight:600;}
 
+  .cover-note{font-size:12px; color:var(--text-3); margin:16px 0 0; line-height:1.7;}
+
+  /* ===== 画面プレビュー ===== */
+  .pv-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:30px 0 6px;}
+  .pv-head h3{margin:0;}
+  .pv-note{font-size:13px; color:var(--text-2); margin:0 0 12px;}
+  .browser{border:0.5px solid var(--border-strong); border-radius:10px; overflow:hidden; background:var(--surface); box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .bbar{display:flex; align-items:center; gap:7px; padding:9px 12px; background:var(--surface-1); border-bottom:0.5px solid var(--border);}
+  .bbar .dot{width:10px; height:10px; border-radius:50%; background:var(--border-strong); flex-shrink:0;}
+  .bbar .url{flex:1; margin-left:8px; font-size:11.5px; color:var(--text-3); background:var(--surface); border:0.5px solid var(--border); border-radius:20px; padding:3px 12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+  .screen{min-height:300px;}
+
+  /* 受講者ビュー */
+  .mb-top{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 18px; background:var(--surface); border-bottom:0.5px solid var(--border); flex-wrap:wrap;}
+  .mb-top .logo{font-size:15px; font-weight:600;}
+  .mb-top .user{font-size:11.5px; color:var(--text-2);}
+  .mb-body{padding:18px; background:#fbfbf9;}
+  .mb-h{font-size:16px; font-weight:600; margin:0 0 3px;}
+  .mb-sub{font-size:12.5px; color:var(--text-3); margin:0 0 14px;}
+  .notice{border:0.5px solid var(--accent); background:var(--accent-bg); border-radius:8px; padding:14px 16px; margin-bottom:18px;}
+  .notice .nt{font-size:13.5px; font-weight:600; color:var(--accent);}
+  .notice .nd{font-size:12.5px; color:var(--text-2); margin:4px 0 11px;}
+  .m-btn{background:var(--accent); color:#fff; border:none; border-radius:6px; padding:9px 16px; font-size:13px; font-family:inherit; cursor:default;}
+  .m-pay{font-size:11.5px; color:var(--text-3); margin-top:7px;}
+  .vgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:12px;}
+  .vcard{border:0.5px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface);}
+  .vthumb{aspect-ratio:16/9; background:linear-gradient(135deg,#2c3e50,#4a6178); display:flex; align-items:center; justify-content:center; position:relative;}
+  .vthumb .play{width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; color:#2c3e50; font-size:13px; padding-left:2px;}
+  .vthumb .lock{position:absolute; top:7px; right:7px; font-size:10px; background:rgba(0,0,0,.55); color:#fff; padding:2px 8px; border-radius:20px;}
+  .vbody{padding:10px 12px;}
+  .vtitle{font-size:13px; font-weight:500; line-height:1.4;}
+  .vmeta{font-size:11px; color:var(--text-3); margin-top:5px; display:block;}
+  .vmeta.vlimit{color:var(--warning);}
+  .mb-foot{font-size:11.5px; color:var(--text-3); margin-top:16px; padding-top:13px; border-top:0.5px solid var(--border); line-height:1.7;}
+
+  /* 管理者ビュー */
+  .adm{display:flex; min-height:340px;}
+  .adm-side{width:152px; flex-shrink:0; background:#23282d; color:#cfd4d8; padding:8px 0; font-size:12.5px;}
+  .adm-side .as-brand{padding:6px 14px 12px; color:#fff; font-weight:600; font-size:11.5px; opacity:.75;}
+  .adm-side .as-item{padding:8px 14px; display:flex; gap:9px; align-items:center;}
+  .adm-side .as-item.on{background:var(--accent); color:#fff;}
+  .adm-side .as-item .ai{width:16px; text-align:center; flex-shrink:0;}
+  .adm-main{flex:1; min-width:0; background:#f0f0f1; padding:16px; overflow-x:auto;}
+  .adm-main .am-h{font-size:16px; font-weight:600; margin:0 0 14px;}
+  .acards{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:16px;}
+  .acard{background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:11px 14px;}
+  .acard .acl{font-size:11px; color:var(--text-3);}
+  .acard .acv{font-size:19px; font-weight:600; margin-top:3px;}
+  .apanel{background:#fff; border:0.5px solid #dcdcde; border-radius:6px; margin-bottom:13px; overflow:hidden;}
+  .apanel .ap-h{font-size:13px; font-weight:600; padding:10px 14px; border-bottom:0.5px solid #e5e5e7; display:flex; justify-content:space-between; align-items:center; gap:10px;}
+  .apanel .ap-h .ap-act{font-size:11px; font-weight:500; color:var(--accent); white-space:nowrap;}
+  .ap-body{padding:13px 14px;}
+  .atable{width:100%; border-collapse:collapse; font-size:12px;}
+  .atable th{text-align:left; padding:8px 14px; color:var(--text-3); font-weight:500; border-bottom:0.5px solid #e5e5e7; background:#fafafa; white-space:nowrap;}
+  .atable td{padding:8px 14px; border-bottom:0.5px solid #f0f0f1; white-space:nowrap;}
+  .atable tr:last-child td{border-bottom:none;}
+  .tag{font-size:10.5px; padding:2px 9px; border-radius:20px; white-space:nowrap;}
+  .tag.ok{background:var(--success-bg); color:var(--success);}
+  .tag.wait{background:var(--warning-bg); color:var(--warning);}
+  .mini-note{font-size:11px; color:var(--text-3); padding:0 14px 11px; line-height:1.6;}
+  .adm-note{font-size:12px; color:var(--text-3); line-height:1.7;}
+  .adm-note b{color:var(--text); font-weight:600;}
+
   .foot{margin-top:32px; font-size:12px; color:var(--text-3); text-align:center; line-height:1.8;}
 </style>
 </head>
@@ -114,6 +177,7 @@
         <li>気になる組み合わせが見つかったら、開発担当（コウジ）にお伝えください。そのまま制作に進みます。</li>
       </ol>
     </div>
+    <p class="cover-note">※ サイトを作る費用（開発の手間）は当方で負担します。下に表示される費用は、サービスの利用料など毎月の維持費の目安です。なお、サイトのアドレス（独自ドメイン）を新しく取得する場合のみ、別途おおよそ年額1,000〜2,000円程度がかかることがあります（既存のものを使う場合は不要です）。</p>
   </div>
 
   <div class="panel">
@@ -135,6 +199,19 @@
   <h3>要件の充足状況</h3>
   <div id="reqs" class="reqs"></div>
 
+  <div class="pv-head">
+    <h3>完成イメージ（画面プレビュー）</h3>
+    <div class="seg" id="pv-seg">
+      <button data-v="member">受講者の画面</button>
+      <button data-v="admin">管理者の画面</button>
+    </div>
+  </div>
+  <p class="pv-note">上のスイッチの設定に合わせて、画面に出る項目が増減します。これは見た目のイメージ例で、デザインや文言は制作時に調整します。</p>
+  <div class="browser">
+    <div class="bbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url" id="pv-url"></span></div>
+    <div class="screen" id="pv-screen"></div>
+  </div>
+
   <div class="foot">
     費用は2026年6月時点の概算・税別。為替やサービス改定で変動します。<br>
     Passione / G TECH JAPAN　石原先生 セミナー会員サイト 仕様検討用
@@ -142,7 +219,7 @@
 </div>
 
 <script>
-var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow"};
+var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member"};
 
 var TOGGLES=[
   {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
@@ -285,7 +362,115 @@ function renderCost(){
   document.getElementById("m-month").textContent=c.monthLabel;
 }
 
-function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();}
+/* ===== 画面プレビュー ===== */
+function vcard(title,meta,lock){
+  return '<div class="vcard"><div class="vthumb">'+lock+'<div class="play">▶</div></div>'+
+    '<div class="vbody"><div class="vtitle">'+title+'</div>'+meta+'</div></div>';
+}
+
+function memberScreen(){
+  var h='';
+  h+='<div class="mb-top"><div class="logo">石原デンタルセミナー</div>'+
+     '<div class="user">ログイン中：田中 花子 様　｜　ログアウト</div></div>';
+  h+='<div class="mb-body">';
+
+  if(state.annaai){
+    var cta;
+    if(state.moushikomi){
+      cta=state.kessai
+        ? '<button class="m-btn">この回に申し込む</button><div class="m-pay">お支払い：クレジットカード（オンライン決済）</div>'
+        : '<button class="m-btn">この回に申し込む</button><div class="m-pay">お申込み後、銀行振込のご案内をメールでお送りします</div>';
+    } else {
+      cta='<div class="m-pay">お申し込みは別途ご案内します</div>';
+    }
+    h+='<div class="notice"><div class="nt">📢 次回セミナーのご案内</div>'+
+       '<div class="nd">「歯周治療における音波スケーラーの活用」　7月20日(日) 13:00〜　オンライン開催</div>'+cta+'</div>';
+  }
+
+  h+='<div class="mb-h">受講した動画</div>';
+  h+='<div class="mb-sub">あなたが受講したセミナーの動画だけが表示されます。</div>';
+  var lock=state.spread==="mid"?'<span class="lock">🔒 サイト内のみ</span>':'';
+  var lim1=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと20日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
+  var lim2=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと6日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
+  h+='<div class="vgrid">'+vcard("基礎から学ぶ歯周治療 第1回",lim1,lock)+vcard("スケーリング実技デモ",lim2,lock)+'</div>';
+  h+='<div class="mb-foot">※ 受講していないセミナーの動画は、ここには表示されません。'+
+     (state.spread==="mid"
+        ? '動画はこのサイトの中だけで再生でき、URLをコピーしても外部では再生できません。'
+        : 'ログインした会員だけが視聴できます（URL自体の持ち出しは防ぎません）。')+'</div>';
+  h+='</div>';
+  return h;
+}
+
+function sideItem(ic,label,on){return '<div class="as-item'+(on?' on':'')+'"><span class="ai">'+ic+'</span>'+label+'</div>';}
+function acard(l,v){return '<div class="acard"><div class="acl">'+l+'</div><div class="acv">'+v+'</div></div>';}
+
+function adminScreen(){
+  var X=state.moushikomi;
+  var h='<div class="adm"><div class="adm-side"><div class="as-brand">WordPress 管理</div>';
+  h+=sideItem("📊","ダッシュボード",false);
+  h+=sideItem("🎬","コース・動画",false);
+  h+=sideItem(X?"👥":"👤",X?"参加者":"会員",true);
+  if(X) h+=sideItem("✉️","メッセージ",false);
+  if(state.annaai) h+=sideItem("📢","案内メール",false);
+  h+=sideItem("📈","再生レポート",false);
+  h+=sideItem("⚙️","設定",false);
+  h+='</div>';
+
+  h+='<div class="adm-main"><div class="am-h">'+(X?'参加者の管理':'会員と動画の管理')+'</div>';
+
+  h+='<div class="acards">';
+  h+=acard("登録会員","128 名");
+  if(X) h+=acard("今回の参加者","42 名");
+  h+=acard("動画の総再生数","1,034 回");
+  h+=acard("概算ユニーク再生","約 610");
+  h+='</div>';
+
+  if(X){
+    var headPay=state.kessai?'<th>入金状態</th>':'<th>入金状態（手動）</th>';
+    var payOk=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag ok">入金確認済</span>';
+    var payWait=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag wait">未入金</span>';
+    h+='<div class="apanel"><div class="ap-h"><span>参加者リスト（7/20 セミナー）</span><span class="ap-act">⬇ CSVダウンロード</span></div>';
+    h+='<table class="atable"><thead><tr><th>お名前</th><th>申込日</th>'+headPay+'<th>受講状況</th></tr></thead><tbody>';
+    h+='<tr><td>田中 花子</td><td>7/2</td><td>'+payOk+'</td><td>視聴中</td></tr>';
+    h+='<tr><td>佐藤 美咲</td><td>7/3</td><td>'+payWait+'</td><td>未視聴</td></tr>';
+    h+='<tr><td>鈴木 由美</td><td>7/5</td><td>'+payOk+'</td><td>視聴完了</td></tr>';
+    h+='</tbody></table>';
+    if(!state.kessai) h+='<div class="mini-note">※ 銀行振込のため、入金を確認したらチェックを付ける運用です（決済をONにすると自動で「決済済」になります）。</div>';
+    h+='</div>';
+    h+='<div class="apanel"><div class="ap-h"><span>✉️ 参加者へメッセージ</span></div>'+
+       '<div class="ap-body"><div class="adm-note">「7/20 セミナーの参加者 全員」または「個別」に、お知らせメールを送れます。（例：開催前日のリマインド、追加資料の配布）</div></div></div>';
+  } else {
+    h+='<div class="apanel"><div class="ap-h"><span>動画の割り当て</span></div>'+
+       '<div class="ap-body"><div class="adm-note">受講者を登録し、その方が見られる動画を選んで割り当てます。申込・参加者管理の画面はありません（動画配信のみの構成）。</div></div></div>';
+  }
+
+  if(state.annaai){
+    h+='<div class="apanel"><div class="ap-h"><span>📢 案内メールの配信</span></div>'+
+       '<div class="ap-body"><div class="adm-note">登録会員 全員へ、次回セミナーの案内を一斉送信できます。</div></div></div>';
+  }
+
+  var spreadTxt=state.spread==="mid"?'サイト外では再生不可（ドメイン制限＋署名URL）':'ログイン必須のみ（URLの持ち出しは防がない）';
+  var expiryTxt=state.expiry?'動画ごとに「公開から○日」で自動的に視聴終了':'期限なし（いつでも視聴可）';
+  h+='<div class="apanel"><div class="ap-h"><span>⚙️ 動画の保護・公開設定</span></div>'+
+     '<div class="ap-body"><div class="adm-note">拡散防止：<b>'+spreadTxt+'</b><br>視聴期限：<b>'+expiryTxt+'</b></div></div></div>';
+
+  h+='</div></div>';
+  return h;
+}
+
+function renderPreview(){
+  document.getElementById("pv-url").textContent=
+    state.preview==="member"?"https://（先生のサイト）/mypage　— 受講者のマイページ":"https://（先生のサイト）/wp-admin　— 管理画面";
+  document.getElementById("pv-screen").innerHTML=
+    state.preview==="member"?memberScreen():adminScreen();
+  var seg=document.getElementById("pv-seg");
+  Array.prototype.forEach.call(seg.children,function(b){
+    b.className=(b.getAttribute("data-v")===state.preview)?"active":"";
+    b.onclick=function(){state.preview=b.getAttribute("data-v");renderAll();};
+  });
+}
+
+function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();renderPreview();}
 renderAll();
 </script>
 </body>
