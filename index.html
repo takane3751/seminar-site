@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セミナー会員サイト 仕様コンフィギュレーター</title>
+<style>
+  :root{
+    --bg:#f7f6f2; --surface:#ffffff; --surface-1:#f1efe8;
+    --text:#26252b; --text-2:#5f5e5a; --text-3:#8a8983;
+    --border:#e3e1d8; --border-strong:#cfcdc2;
+    --accent:#1f5fa5; --accent-bg:#e6f1fb;
+    --success:#0f6e56; --success-bg:#e1f5ee;
+    --warning:#854f0b; --warning-bg:#faeeda;
+    --radius:8px;
+    --font:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.7; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px; margin:0 auto; padding:32px 20px 80px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  h1{font-size:24px; font-weight:600; margin:0 0 4px;}
+  .sub{font-size:14px; color:var(--text-2); margin:0 0 28px;}
+  h3{font-size:16px; font-weight:600; margin:28px 0 10px;}
+  .panel{background:var(--surface-1); border-radius:12px; padding:20px;}
+  .panel-head{display:flex; align-items:center; gap:8px; margin-bottom:2px;}
+  .panel-head .ic{font-size:20px; color:var(--accent);}
+  .panel h2{margin:0; font-size:18px; font-weight:600;}
+  .panel .note{margin:0 0 14px; font-size:13px; color:var(--text-2);}
+
+  .trow{display:flex; align-items:center; gap:10px; padding:11px 6px; border-bottom:0.5px solid var(--border);}
+  .trow:last-child{border-bottom:none;}
+  .trow .tic{font-size:20px; color:var(--text-2); width:22px; text-align:center; flex-shrink:0;}
+  .trow .tlabel{flex:1; min-width:0;}
+  .trow .tlabel .tt{font-size:14px; font-weight:500;}
+  .trow .tlabel .th{font-size:12px; color:var(--text-3);}
+  .trow.disabled{opacity:.42;}
+
+  .sw{flex-shrink:0; width:46px; height:26px; border-radius:13px; border:none; background:var(--border-strong); position:relative; cursor:pointer; transition:background .15s; padding:0;}
+  .sw.on{background:var(--accent);}
+  .sw .knob{position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; transition:left .15s;}
+  .sw.on .knob{left:23px;}
+  .sw:disabled{cursor:not-allowed;}
+
+  .seg{flex-shrink:0; display:flex; border:0.5px solid var(--border-strong); border-radius:var(--radius); overflow:hidden;}
+  .seg button{border:none; padding:6px 13px; font-size:13px; cursor:pointer; background:transparent; color:var(--text-2); font-family:inherit;}
+  .seg button.active{background:var(--accent); color:#fff;}
+
+  .banner{border:2px solid var(--accent); border-radius:12px; padding:13px 16px; background:var(--surface); margin:16px 0;}
+  .banner .pill{display:inline-block; font-size:12px; padding:3px 10px; border-radius:var(--radius); background:var(--accent-bg); color:var(--accent); margin-bottom:6px;}
+  .banner .bn{font-size:18px; font-weight:600;}
+  .banner .bd{font-size:13px; color:var(--text-2); margin-top:2px;}
+
+  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:4px;}
+  .metric{background:var(--surface-1); border-radius:var(--radius); padding:14px 16px;}
+  .metric .ml{font-size:13px; color:var(--text-3);}
+  .metric .mv{font-size:21px; font-weight:600; margin-top:2px;}
+
+  .rowcard{display:flex; align-items:center; gap:10px; padding:10px 14px; border:0.5px solid var(--border); border-radius:var(--radius); background:var(--surface);}
+  .rowcard .rn{font-size:13px; font-weight:500; width:110px; flex-shrink:0;}
+  .rowcard .rd{flex:1; font-size:13px; color:var(--text-2);}
+  .rowcard .rp{font-size:12px; color:var(--text-3); white-space:nowrap;}
+  .stack,.reqs{display:flex; flex-direction:column; gap:6px;}
+
+  .req{display:flex; align-items:flex-start; gap:10px; padding:9px 14px; border:0.5px solid var(--border); border-radius:var(--radius); background:var(--surface);}
+  .req .ri{font-size:18px; margin-top:1px; flex-shrink:0;}
+  .req .rb{flex:1; min-width:0;}
+  .req .rt{font-size:14px;}
+  .req .rh{font-size:12px; color:var(--text-3);}
+  .req .rs{font-size:11px; white-space:nowrap; margin-top:2px;}
+  .req.dim{opacity:.5;}
+
+  .ic-check::before{content:"✓"; color:var(--success); font-weight:700;}
+  .ic-dash::before{content:"◐"; color:var(--warning);}
+  .ic-tool::before{content:"✚"; color:var(--warning);}
+  .ic-minus::before{content:"–"; color:var(--text-3);}
+  .ic-lock::before{content:"🔒"; filter:grayscale(1);}
+
+  .foot{margin-top:32px; font-size:12px; color:var(--text-3); text-align:center; line-height:1.8;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="sr-only">セミナー会員サイトの仕様コンフィギュレーター。6つのスイッチを切り替えると構成・要件充足・実装・費用が連動します。</span>
+
+  <h1>セミナー会員サイト 仕様コンフィギュレーター</h1>
+  <p class="sub">スイッチを切り替えると、構成・要件・実装・費用が連動します。前提：会員登録は無料、受講で課金。</p>
+
+  <div class="panel">
+    <div class="panel-head"><span class="tic ic">⚙</span><h2>構成スイッチ</h2></div>
+    <p class="note">上から順に切り替えてください（決済は申込ON、申込は案内ONが前提です）。</p>
+    <div id="toggles"></div>
+  </div>
+
+  <div id="banner"></div>
+
+  <div class="metrics">
+    <div class="metric"><div class="ml">想定の月額維持費</div><div class="mv" id="m-month">—</div></div>
+    <div class="metric"><div class="ml">初期の作り込み</div><div class="mv" id="m-init">—</div></div>
+    <div class="metric"><div class="ml">満たせる要件</div><div class="mv" id="m-req">—</div></div>
+  </div>
+
+  <h3>この構成で必要なもの</h3>
+  <div id="stack" class="stack"></div>
+
+  <h3>要件の充足状況</h3>
+  <div id="reqs" class="reqs"></div>
+
+  <div class="foot">
+    費用は2026年6月時点の概算・税別。為替やサービス改定で変動します。<br>
+    Passione / G TECH JAPAN　石原先生 セミナー会員サイト 仕様検討用
+  </div>
+</div>
+
+<script>
+var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow"};
+
+var TOGGLES=[
+  {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
+  {key:"moushikomi",icon:"📋",label:"申し込みをサイト内で行う",hint:"案内ONが前提",type:"bool",needs:"annaai"},
+  {key:"kessai",icon:"💳",label:"決済をサイト内で行う（カード）",hint:"申込ONが前提。OFFは銀行振込＋手動入金フラグ",type:"bool",needs:"moushikomi"},
+  {key:"spread",icon:"🔒",label:"動画の拡散防止レベル",type:"choice",opts:[{v:"low",t:"弱"},{v:"mid",t:"中"}],hints:{low:"ログイン必須のみ",mid:"サイト外では再生不可（推奨）"}},
+  {key:"expiry",icon:"⏱",label:"動画ごとの閲覧期限を設ける",hint:"動画単位で「公開から○日」を設定",type:"bool"},
+  {key:"budget",icon:"💰",label:"維持費の方針",type:"choice",opts:[{v:"free",t:"無料優先"},{v:"allow",t:"費用許容"}],hints:{free:"固定費を極力ゼロに",allow:"月数千円までは許容"}}
+];
+
+function computeReqs(){
+  var X=state.moushikomi;
+  return [
+    {t:"受講した動画だけを紐付けて閲覧",s:"ok",how:"LMSのコース割り当て（標準）"},
+    {t:"動画ごとの閲覧期限",s:state.expiry?"ok":"off",how:state.expiry?"LMSアクセス期限＋署名URLのTTL":"期限なし設定"},
+    {t:"動画ごとの総再生回数",s:"ok",how:"Bunny Stream標準分析"},
+    {t:"概算ユニーク再生",s:"partial",how:"Bunny分析（セッション基準・厳密会員紐付けは不可）"},
+    {t:"ユーザーごとの受講履歴",s:X?"ok":"na",how:X?"LMS標準":"申込ONで有効"},
+    {t:"イベント別の参加者リスト",s:X?"ok":"na",how:X?"LMS受講者一覧／Groups":"申込ONで有効"},
+    {t:"参加者の入金状態管理",s:X?"add":"na",how:X?"入金フラグのカスタムフィールド（軽微）":"申込ONで有効"},
+    {t:"参加者へ全体・個別メッセージ",s:X?"add":"na",how:X?"配信プラグイン＋イベント絞り込み（軽い作り込み）":"申込ONで有効"},
+    {t:"登録ユーザー全員へ案内メール",s:state.annaai?"ok":"na",how:state.annaai?"メール配信プラグイン":"案内ONで有効"},
+    {t:"リストのCSVダウンロード",s:X?"ok":"na",how:X?"LMS／会員のエクスポート":"申込ONで有効"}
+  ];
+}
+
+function computeMode(){
+  if(state.moushikomi) return {name:"モードX — フル機能",color:"var(--accent)",bg:"var(--accent-bg)",desc:"案内・申込・参加者管理・動画まで一体運用"};
+  return {name:"モードY — 動画のみ",color:"var(--success)",bg:"var(--success-bg)",desc:"案内も申込もせず、登録ユーザーに動画だけ配信"};
+}
+
+function computeStack(){
+  var s=[];
+  s.push({n:"WordPress",d:"土台（既存Xserver流用可）",pay:"無料"});
+  var lms=(state.budget==="free"&&!state.moushikomi)?"Tutor LMS 無料版":(state.moushikomi?"LearnDash もしくは Tutor LMS Pro":"Tutor LMS（無料版〜）");
+  var lmsPay=(state.budget==="free"&&!state.moushikomi)?"無料":(state.moushikomi?"年 約3〜4万円":"無料〜");
+  s.push({n:"LMS",d:lms,pay:lmsPay});
+  s.push({n:"動画ホスティング",d:"Bunny Stream（署名URL・総再生数分析）",pay:"従量・月数百円〜"});
+  if(state.spread==="mid") s.push({n:"拡散防止",d:"ドメイン制限＋署名URLトークン",pay:"ホスティングに含む"});
+  else s.push({n:"拡散防止",d:"WPログイン必須のみ（簡易）",pay:"無料"});
+  if(state.annaai) s.push({n:"メール配信",d:state.budget==="free"?"MailPoet 無料枠":"MailPoet等 有料（配信無制限）",pay:state.budget==="free"?"無料":"無料〜年1万円程度"});
+  if(state.kessai) s.push({n:"決済",d:"WooCommerce＋カード決済（PAY.JP等）",pay:"従量手数料"});
+  else if(state.moushikomi) s.push({n:"入金管理",d:"銀行振込＋手動入金フラグ",pay:"無料（運用対応）"});
+  if(state.expiry) s.push({n:"閲覧期限",d:"LMSアクセス期限＋署名URL TTL",pay:"標準機能"});
+  return s;
+}
+
+function computeCost(){
+  var month=0;
+  if(state.moushikomi) month+=state.budget==="free"?1000:3500; else month+=state.budget==="free"?300:1200;
+  if(state.spread==="mid") month+=300;
+  if(state.annaai&&state.budget==="allow") month+=800;
+  var initDays=0;
+  if(state.moushikomi) initDays+=1;
+  if(state.spread==="mid") initDays+=0.5;
+  var init=initDays<=0.5?"ほぼ設定のみ":(initDays<=1.5?"約1〜2日":"約2〜3日");
+  var label;
+  if(month<=600) label="実質0〜1,000円";
+  else if(month<=2000) label="約1,000〜2,000円";
+  else if(month<=4000) label="約3,000〜5,000円";
+  else label="約5,000〜7,000円";
+  if(state.kessai) label+="＋手数料";
+  return {monthLabel:label,init:init};
+}
+
+function toggleBool(key){
+  state[key]=!state[key];
+  if(key==="annaai"&&!state.annaai){state.moushikomi=false;state.kessai=false;}
+  if(key==="moushikomi"){ if(state.moushikomi){state.annaai=true;} else {state.kessai=false;} }
+  if(key==="kessai"&&state.kessai){state.moushikomi=true;state.annaai=true;}
+  renderAll();
+}
+
+function renderToggles(){
+  var el=document.getElementById("toggles"); el.innerHTML="";
+  TOGGLES.forEach(function(T){
+    var disabled=T.needs&&!state[T.needs];
+    var row=document.createElement("div");
+    row.className="trow"+(disabled?" disabled":"");
+    var hintText=T.type==="choice"?(T.hints[state[T.key]]||""):(T.hint||"");
+    row.innerHTML='<span class="tic">'+T.icon+'</span><div class="tlabel"><div class="tt">'+T.label+'</div><div class="th">'+hintText+'</div></div>';
+    if(T.type==="bool"){
+      var sw=document.createElement("button");
+      sw.className="sw"+(state[T.key]?" on":"");
+      sw.setAttribute("aria-label",T.label);
+      sw.setAttribute("aria-pressed",state[T.key]?"true":"false");
+      sw.innerHTML='<span class="knob"></span>';
+      if(disabled) sw.disabled=true; else sw.onclick=function(){toggleBool(T.key);};
+      row.appendChild(sw);
+    } else {
+      var seg=document.createElement("div"); seg.className="seg";
+      T.opts.forEach(function(o){
+        var b=document.createElement("button");
+        b.textContent=o.t;
+        if(state[T.key]===o.v) b.className="active";
+        b.onclick=function(){state[T.key]=o.v;renderAll();};
+        seg.appendChild(b);
+      });
+      row.appendChild(seg);
+    }
+    el.appendChild(row);
+  });
+}
+
+function renderBanner(){
+  var m=computeMode();
+  document.getElementById("banner").innerHTML=
+    '<div class="banner" style="border-color:'+m.color+'">'+
+    '<span class="pill" style="background:'+m.bg+';color:'+m.color+'">現在の構成</span>'+
+    '<div class="bn">'+m.name+'</div><div class="bd">'+m.desc+'</div></div>';
+}
+
+function renderStack(){
+  var el=document.getElementById("stack"); el.innerHTML="";
+  computeStack().forEach(function(s){
+    var row=document.createElement("div"); row.className="rowcard";
+    row.innerHTML='<span class="rn">'+s.n+'</span><span class="rd">'+s.d+'</span><span class="rp">'+s.pay+'</span>';
+    el.appendChild(row);
+  });
+}
+
+function renderReqs(){
+  var el=document.getElementById("reqs"); el.innerHTML="";
+  var okc=0,tot=0;
+  var MAP={
+    ok:{i:"ic-check",c:"var(--success)",t:"対応"},
+    partial:{i:"ic-dash",c:"var(--warning)",t:"概算で対応"},
+    add:{i:"ic-tool",c:"var(--warning)",t:"軽微な追加実装"},
+    off:{i:"ic-minus",c:"var(--text-3)",t:"オフ設定"},
+    na:{i:"ic-lock",c:"var(--text-3)",t:"この構成では対象外"}
+  };
+  computeReqs().forEach(function(r){
+    if(r.s!=="na"&&r.s!=="off"){tot++; if(r.s==="ok"||r.s==="partial"||r.s==="add") okc++;}
+    var m=MAP[r.s]; var dim=(r.s==="na");
+    var row=document.createElement("div"); row.className="req"+(dim?" dim":"");
+    row.innerHTML='<span class="ri '+m.i+'"></span><div class="rb"><div class="rt">'+r.t+'</div><div class="rh">'+r.how+'</div></div><span class="rs" style="color:'+m.c+'">'+m.t+'</span>';
+    el.appendChild(row);
+  });
+  document.getElementById("m-req").textContent=okc+" / "+tot;
+}
+
+function renderCost(){
+  var c=computeCost();
+  document.getElementById("m-month").textContent=c.monthLabel;
+  document.getElementById("m-init").textContent=c.init;
+}
+
+function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();}
+renderAll();
+</script>
+</body>
+</html>
