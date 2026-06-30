@@ -101,21 +101,23 @@
   .bbar .dot{width:10px; height:10px; border-radius:50%; background:var(--border-strong); flex-shrink:0;}
   .bbar .url{flex:1; margin-left:8px; font-size:11.5px; color:var(--text-3); background:var(--surface); border:0.5px solid var(--border); border-radius:20px; padding:3px 12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
   .screen{min-height:300px;}
+  .pv-cap{font-size:11.5px; color:var(--text-3); margin:9px 2px 0; line-height:1.6;}
 
-  /* 受講者ビュー */
+  /* 受講者ビュー（表サイト） */
   .mb-top{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 18px; background:var(--surface); border-bottom:0.5px solid var(--border); flex-wrap:wrap;}
   .mb-top .logo{font-size:15px; font-weight:600;}
   .mb-top .user{font-size:11.5px; color:var(--text-2);}
+  .mtabs{display:flex; gap:2px; padding:0 12px; background:var(--surface); border-bottom:0.5px solid var(--border); overflow-x:auto;}
+  .mtab{border:none; background:transparent; font-family:inherit; font-size:12.5px; color:var(--text-2); padding:11px 13px; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap;}
+  .mtab.on{color:var(--accent); border-bottom-color:var(--accent); font-weight:600;}
   .mb-body{padding:18px; background:#fbfbf9;}
   .mb-h{font-size:16px; font-weight:600; margin:0 0 3px;}
   .mb-sub{font-size:12.5px; color:var(--text-3); margin:0 0 14px;}
-  .notice{border:0.5px solid var(--accent); background:var(--accent-bg); border-radius:8px; padding:14px 16px; margin-bottom:18px;}
-  .notice .nt{font-size:13.5px; font-weight:600; color:var(--accent);}
-  .notice .nd{font-size:12.5px; color:var(--text-2); margin:4px 0 11px;}
-  .m-btn{background:var(--accent); color:#fff; border:none; border-radius:6px; padding:9px 16px; font-size:13px; font-family:inherit; cursor:default;}
-  .m-pay{font-size:11.5px; color:var(--text-3); margin-top:7px;}
+  .back{font-size:12px; color:var(--accent); margin-bottom:12px; cursor:pointer; display:inline-block;}
+  .m-btn{background:var(--accent); color:#fff; border:none; border-radius:6px; padding:9px 18px; font-size:13px; font-family:inherit; cursor:pointer;}
+  .m-pay{font-size:11.5px; color:var(--text-3); margin-top:8px;}
   .vgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:12px;}
-  .vcard{border:0.5px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface);}
+  .vcard{border:0.5px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface); cursor:pointer;}
   .vthumb{aspect-ratio:16/9; background:linear-gradient(135deg,#2c3e50,#4a6178); display:flex; align-items:center; justify-content:center; position:relative;}
   .vthumb .play{width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; color:#2c3e50; font-size:13px; padding-left:2px;}
   .vthumb .lock{position:absolute; top:7px; right:7px; font-size:10px; background:rgba(0,0,0,.55); color:#fff; padding:2px 8px; border-radius:20px;}
@@ -124,16 +126,43 @@
   .vmeta{font-size:11px; color:var(--text-3); margin-top:5px; display:block;}
   .vmeta.vlimit{color:var(--warning);}
   .mb-foot{font-size:11.5px; color:var(--text-3); margin-top:16px; padding-top:13px; border-top:0.5px solid var(--border); line-height:1.7;}
+  /* 動画視聴ページ */
+  .player{aspect-ratio:16/9; background:#13161a; border-radius:10px; display:flex; align-items:center; justify-content:center; position:relative; margin-bottom:14px;}
+  .player .pbtn{width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; color:#13161a; font-size:20px; padding-left:3px;}
+  .player .plock{position:absolute; top:10px; right:12px; font-size:10.5px; background:rgba(0,0,0,.55); color:#fff; padding:3px 10px; border-radius:20px;}
+  .player .pbar{position:absolute; left:14px; right:14px; bottom:14px; height:4px; border-radius:3px; background:rgba(255,255,255,.25);}
+  .player .pbar i{display:block; width:38%; height:100%; border-radius:3px; background:var(--accent);}
+  .wtitle{font-size:16px; font-weight:600; margin:0 0 4px;}
+  .wmeta{font-size:12px; color:var(--text-3); margin-bottom:12px;}
+  .wmeta .vlimit{color:var(--warning);}
+  .wdesc{font-size:13px; color:var(--text-2); line-height:1.8; border-top:0.5px solid var(--border); padding-top:13px;}
+  /* セミナー案内ページ（テキスト/フライヤー） */
+  .seg-sm{display:inline-flex; border:0.5px solid var(--border-strong); border-radius:6px; overflow:hidden; margin-bottom:14px;}
+  .seg-sm button{border:none; background:transparent; font-family:inherit; font-size:12px; color:var(--text-2); padding:5px 12px; cursor:pointer;}
+  .seg-sm button.on{background:var(--accent); color:#fff;}
+  .annai-wrap{display:flex; gap:18px; flex-wrap:wrap;}
+  .flyer{width:230px; max-width:100%; aspect-ratio:3/4; border-radius:8px; border:0.5px solid var(--border); background:linear-gradient(160deg,#1f5fa5,#3b82c4); color:#fff; padding:20px 18px; display:flex; flex-direction:column; box-shadow:0 2px 8px rgba(0,0,0,.12); flex-shrink:0;}
+  .flyer .fk{font-size:11px; letter-spacing:.08em; opacity:.85;}
+  .flyer .fttl{font-size:19px; font-weight:700; line-height:1.4; margin-top:10px;}
+  .flyer .fmid{margin-top:auto; font-size:12.5px; line-height:1.9; opacity:.95;}
+  .flyer .fimg{margin-top:14px; font-size:10.5px; opacity:.7; text-align:center;}
+  .annai-side{flex:1; min-width:200px;}
+  .annai-side .as-ttl{font-size:15px; font-weight:600; margin:0 0 6px;}
+  .annai-side .as-d{font-size:13px; color:var(--text-2); line-height:1.85; margin-bottom:14px;}
+  .kv{font-size:12.5px; color:var(--text-2); line-height:1.9;}
+  .kv b{color:var(--text); font-weight:600;}
 
-  /* 管理者ビュー */
-  .adm{display:flex; min-height:340px;}
-  .adm-side{width:152px; flex-shrink:0; background:#23282d; color:#cfd4d8; padding:8px 0; font-size:12.5px;}
+  /* 管理者ビュー（WordPress 管理画面） */
+  .adm{display:flex; min-height:360px;}
+  .adm-side{width:154px; flex-shrink:0; background:#23282d; color:#cfd4d8; padding:8px 0; font-size:12.5px;}
   .adm-side .as-brand{padding:6px 14px 12px; color:#fff; font-weight:600; font-size:11.5px; opacity:.75;}
-  .adm-side .as-item{padding:8px 14px; display:flex; gap:9px; align-items:center;}
+  .adm-side .as-item{padding:8px 14px; display:flex; gap:9px; align-items:center; cursor:pointer;}
+  .adm-side .as-item:hover{background:#191e23;}
   .adm-side .as-item.on{background:var(--accent); color:#fff;}
   .adm-side .as-item .ai{width:16px; text-align:center; flex-shrink:0;}
   .adm-main{flex:1; min-width:0; background:#f0f0f1; padding:16px; overflow-x:auto;}
-  .adm-main .am-h{font-size:16px; font-weight:600; margin:0 0 14px;}
+  .adm-main .am-h{font-size:16px; font-weight:600; margin:0 0 4px;}
+  .adm-main .am-sub{font-size:12px; color:var(--text-3); margin:0 0 14px;}
   .acards{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:16px;}
   .acard{background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:11px 14px;}
   .acard .acl{font-size:11px; color:var(--text-3);}
@@ -152,6 +181,23 @@
   .mini-note{font-size:11px; color:var(--text-3); padding:0 14px 11px; line-height:1.6;}
   .adm-note{font-size:12px; color:var(--text-3); line-height:1.7;}
   .adm-note b{color:var(--text); font-weight:600;}
+  /* 管理フォーム風 */
+  .frow{margin-bottom:12px;}
+  .frow label{display:block; font-size:12px; font-weight:600; color:var(--text-2); margin-bottom:5px;}
+  .finput,.fsel,.ftext{width:100%; border:0.5px solid #c7c7cb; border-radius:5px; padding:8px 10px; font-size:12.5px; font-family:inherit; color:var(--text-2); background:#fff;}
+  .ftext{min-height:64px; resize:none;}
+  .fbtn{background:var(--accent); color:#fff; border:none; border-radius:5px; padding:8px 16px; font-size:12.5px; font-family:inherit; cursor:pointer;}
+  .fbtn.sub{background:#fff; color:var(--accent); border:0.5px solid var(--accent);}
+  .upbox{border:1.5px dashed #b9b9bd; border-radius:8px; background:#fafafa; padding:22px 16px; text-align:center; font-size:12px; color:var(--text-3);}
+  .upbox .upic{font-size:26px; display:block; margin-bottom:6px;}
+  .uphas{display:flex; align-items:center; gap:12px;}
+  .upthumb{width:64px; aspect-ratio:3/4; border-radius:5px; background:linear-gradient(160deg,#1f5fa5,#3b82c4); flex-shrink:0;}
+  .vlist-row{display:flex; align-items:center; gap:12px; padding:9px 14px; border-bottom:0.5px solid #f0f0f1; font-size:12.5px;}
+  .vlist-row:last-child{border-bottom:none;}
+  .vlist-row .vl-n{flex:1; min-width:0;}
+  .vlist-row .vl-t{font-size:11px; color:var(--text-3); white-space:nowrap;}
+  .bar{height:8px; border-radius:5px; background:#e5e5e7; overflow:hidden; margin-top:5px;}
+  .bar i{display:block; height:100%; background:var(--accent); border-radius:5px;}
 
   .foot{margin-top:32px; font-size:12px; color:var(--text-3); text-align:center; line-height:1.8;}
 </style>
@@ -206,11 +252,12 @@
       <button data-v="admin">管理者の画面</button>
     </div>
   </div>
-  <p class="pv-note">上のスイッチの設定に合わせて、画面に出る項目が増減します。これは見た目のイメージ例で、デザインや文言は制作時に調整します。</p>
+  <p class="pv-note">実際のサイトと同じく、画面は複数のページに分かれます。受講者側は上部のタブ、管理者側は左メニューでページを切り替えられます。上の構成スイッチに連動して、ページや項目が増減します。</p>
   <div class="browser">
     <div class="bbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url" id="pv-url"></span></div>
     <div class="screen" id="pv-screen"></div>
   </div>
+  <p class="pv-cap">※ ページの構成・項目は実際の制作物に沿ったイメージです。色やボタンなどの見た目は、採用するデザインテーマに合わせて制作時に整えます。文中の氏名・日程はサンプルです。</p>
 
   <div class="foot">
     費用は2026年6月時点の概算・税別。為替やサービス改定で変動します。<br>
@@ -219,7 +266,7 @@
 </div>
 
 <script>
-var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member"};
+var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",mpage:"mypage",apage:"dash",annaiType:"flyer"};
 
 var TOGGLES=[
   {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
@@ -362,112 +409,229 @@ function renderCost(){
   document.getElementById("m-month").textContent=c.monthLabel;
 }
 
-/* ===== 画面プレビュー ===== */
+/* ===== 画面プレビュー（複数ページ・タブ切替） ===== */
 function vcard(title,meta,lock){
-  return '<div class="vcard"><div class="vthumb">'+lock+'<div class="play">▶</div></div>'+
+  return '<div class="vcard" data-mtab="watch"><div class="vthumb">'+lock+'<div class="play">▶</div></div>'+
     '<div class="vbody"><div class="vtitle">'+title+'</div>'+meta+'</div></div>';
 }
+function acard(l,v){return '<div class="acard"><div class="acl">'+l+'</div><div class="acv">'+v+'</div></div>';}
+function findUrl(list,k){for(var i=0;i<list.length;i++){if(list[i].k===k)return list[i].url;}return list[0].url;}
 
-function memberScreen(){
-  var h='';
-  h+='<div class="mb-top"><div class="logo">石原デンタルセミナー</div>'+
-     '<div class="user">ログイン中：田中 花子 様　｜　ログアウト</div></div>';
-  h+='<div class="mb-body">';
+function memberPages(){
+  var p=[{k:"mypage",label:"マイページ",url:"/mypage"},{k:"watch",label:"動画を見る",url:"/course/perio-1"}];
+  if(state.annaai) p.push({k:"annai",label:"セミナー案内",url:"/seminar/next"});
+  return p;
+}
+function adminPages(){
+  var X=state.moushikomi;
+  var p=[{k:"dash",ic:"📊",label:"ダッシュボード",url:"/wp-admin"},{k:"videos",ic:"🎬",label:"コース・動画",url:"/wp-admin/courses"}];
+  if(X){p.push({k:"members",ic:"👥",label:"参加者",url:"/wp-admin/members"});p.push({k:"messages",ic:"✉️",label:"メッセージ",url:"/wp-admin/messages"});}
+  else{p.push({k:"assign",ic:"👤",label:"受講者・割当",url:"/wp-admin/students"});}
+  if(state.annaai) p.push({k:"annai_edit",ic:"📢",label:"案内の作成",url:"/wp-admin/seminar"});
+  p.push({k:"report",ic:"📈",label:"再生レポート",url:"/wp-admin/analytics"});
+  p.push({k:"settings",ic:"⚙️",label:"設定",url:"/wp-admin/settings"});
+  return p;
+}
 
-  if(state.annaai){
-    var cta;
-    if(state.moushikomi){
-      cta=state.kessai
-        ? '<button class="m-btn">この回に申し込む</button><div class="m-pay">お支払い：クレジットカード（オンライン決済）</div>'
-        : '<button class="m-btn">この回に申し込む</button><div class="m-pay">お申込み後、銀行振込のご案内をメールでお送りします</div>';
-    } else {
-      cta='<div class="m-pay">お申し込みは別途ご案内します</div>';
-    }
-    h+='<div class="notice"><div class="nt">📢 次回セミナーのご案内</div>'+
-       '<div class="nd">「歯周治療における音波スケーラーの活用」　7月20日(日) 13:00〜　オンライン開催</div>'+cta+'</div>';
-  }
-
-  h+='<div class="mb-h">受講した動画</div>';
-  h+='<div class="mb-sub">あなたが受講したセミナーの動画だけが表示されます。</div>';
-  var lock=state.spread==="mid"?'<span class="lock">🔒 サイト内のみ</span>':'';
-  var lim1=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと20日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
-  var lim2=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと6日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
-  h+='<div class="vgrid">'+vcard("基礎から学ぶ歯周治療 第1回",lim1,lock)+vcard("スケーリング実技デモ",lim2,lock)+'</div>';
-  h+='<div class="mb-foot">※ 受講していないセミナーの動画は、ここには表示されません。'+
-     (state.spread==="mid"
-        ? '動画はこのサイトの中だけで再生でき、URLをコピーしても外部では再生できません。'
-        : 'ログインした会員だけが視聴できます（URL自体の持ち出しは防ぎません）。')+'</div>';
+function memberView(){
+  var pages=memberPages();
+  if(!pages.some(function(p){return p.k===state.mpage;})) state.mpage=pages[0].k;
+  var h='<div class="mb-top"><div class="logo">石原デンタルセミナー</div>'+
+        '<div class="user">ログイン中：田中 花子 様　｜　ログアウト</div></div>';
+  h+='<div class="mtabs">';
+  pages.forEach(function(p){h+='<button class="mtab'+(p.k===state.mpage?" on":"")+'" data-mtab="'+p.k+'">'+p.label+'</button>';});
+  h+='</div><div class="mb-body">';
+  if(state.mpage==="mypage") h+=mpMypage();
+  else if(state.mpage==="watch") h+=mpWatch();
+  else if(state.mpage==="annai") h+=mpAnnai();
   h+='</div>';
   return h;
 }
 
-function sideItem(ic,label,on){return '<div class="as-item'+(on?' on':'')+'"><span class="ai">'+ic+'</span>'+label+'</div>';}
-function acard(l,v){return '<div class="acard"><div class="acl">'+l+'</div><div class="acv">'+v+'</div></div>';}
+function mpMypage(){
+  var lock=state.spread==="mid"?'<span class="lock">🔒 サイト内のみ</span>':'';
+  var lim1=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと20日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
+  var lim2=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと6日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
+  var h='<div class="mb-h">受講した動画</div>'+
+        '<div class="mb-sub">あなたが受講したセミナーの動画だけが表示されます。動画をクリックすると視聴ページが開きます。</div>';
+  h+='<div class="vgrid">'+vcard("基礎から学ぶ歯周治療 第1回",lim1,lock)+vcard("スケーリング実技デモ",lim2,lock)+'</div>';
+  h+='<div class="mb-foot">※ 受講していないセミナーの動画は、ここには表示されません。'+
+     (state.spread==="mid"?'動画はこのサイトの中だけで再生でき、URLをコピーしても外部では再生できません。':'ログインした会員だけが視聴できます（URL自体の持ち出しは防ぎません）。')+'</div>';
+  return h;
+}
 
-function adminScreen(){
-  var X=state.moushikomi;
-  var h='<div class="adm"><div class="adm-side"><div class="as-brand">WordPress 管理</div>';
-  h+=sideItem("📊","ダッシュボード",false);
-  h+=sideItem("🎬","コース・動画",false);
-  h+=sideItem(X?"👥":"👤",X?"参加者":"会員",true);
-  if(X) h+=sideItem("✉️","メッセージ",false);
-  if(state.annaai) h+=sideItem("📢","案内メール",false);
-  h+=sideItem("📈","再生レポート",false);
-  h+=sideItem("⚙️","設定",false);
-  h+='</div>';
+function mpWatch(){
+  var plock=state.spread==="mid"?'<span class="plock">🔒 このサイト内でのみ再生</span>':'';
+  var lim=state.expiry?'<span class="vlimit">　｜　⏱ 視聴期限：あと20日</span>':'　｜　視聴期限：なし';
+  var h='<span class="back" data-mtab="mypage">← マイページに戻る</span>';
+  h+='<div class="player">'+plock+'<div class="pbtn">▶</div><div class="pbar"><i></i></div></div>';
+  h+='<div class="wtitle">基礎から学ぶ歯周治療 第1回</div>';
+  h+='<div class="wmeta">講師：石原 先生'+lim+'</div>';
+  h+='<div class="wdesc">歯周治療の基礎から、音波スケーラーの基本操作までを解説します。'+
+     (state.spread==="mid"?'この動画は会員サイト内のプレーヤーでのみ再生され、URLを取り出しても外部では再生できません。':'ログインした会員だけが視聴できます。')+'</div>';
+  return h;
+}
 
-  h+='<div class="adm-main"><div class="am-h">'+(X?'参加者の管理':'会員と動画の管理')+'</div>';
-
-  h+='<div class="acards">';
-  h+=acard("登録会員","128 名");
-  if(X) h+=acard("今回の参加者","42 名");
-  h+=acard("動画の総再生数","1,034 回");
-  h+=acard("概算ユニーク再生","約 610");
-  h+='</div>';
-
-  if(X){
-    var headPay=state.kessai?'<th>入金状態</th>':'<th>入金状態（手動）</th>';
-    var payOk=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag ok">入金確認済</span>';
-    var payWait=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag wait">未入金</span>';
-    h+='<div class="apanel"><div class="ap-h"><span>参加者リスト（7/20 セミナー）</span><span class="ap-act">⬇ CSVダウンロード</span></div>';
-    h+='<table class="atable"><thead><tr><th>お名前</th><th>申込日</th>'+headPay+'<th>受講状況</th></tr></thead><tbody>';
-    h+='<tr><td>田中 花子</td><td>7/2</td><td>'+payOk+'</td><td>視聴中</td></tr>';
-    h+='<tr><td>佐藤 美咲</td><td>7/3</td><td>'+payWait+'</td><td>未視聴</td></tr>';
-    h+='<tr><td>鈴木 由美</td><td>7/5</td><td>'+payOk+'</td><td>視聴完了</td></tr>';
-    h+='</tbody></table>';
-    if(!state.kessai) h+='<div class="mini-note">※ 銀行振込のため、入金を確認したらチェックを付ける運用です（決済をONにすると自動で「決済済」になります）。</div>';
-    h+='</div>';
-    h+='<div class="apanel"><div class="ap-h"><span>✉️ 参加者へメッセージ</span></div>'+
-       '<div class="ap-body"><div class="adm-note">「7/20 セミナーの参加者 全員」または「個別」に、お知らせメールを送れます。（例：開催前日のリマインド、追加資料の配布）</div></div></div>';
+function mpAnnai(){
+  var cta;
+  if(state.moushikomi){
+    cta=state.kessai
+      ? '<button class="m-btn">この回に申し込む</button><div class="m-pay">お支払い：クレジットカード（オンライン決済）</div>'
+      : '<button class="m-btn">この回に申し込む</button><div class="m-pay">お申込み後、銀行振込のご案内をメールでお送りします</div>';
   } else {
-    h+='<div class="apanel"><div class="ap-h"><span>動画の割り当て</span></div>'+
-       '<div class="ap-body"><div class="adm-note">受講者を登録し、その方が見られる動画を選んで割り当てます。申込・参加者管理の画面はありません（動画配信のみの構成）。</div></div></div>';
+    cta='<div class="m-pay">お申し込みは別途ご案内します（このサイトでは申込は受け付けません）。</div>';
   }
-
-  if(state.annaai){
-    h+='<div class="apanel"><div class="ap-h"><span>📢 案内メールの配信</span></div>'+
-       '<div class="ap-body"><div class="adm-note">登録会員 全員へ、次回セミナーの案内を一斉送信できます。</div></div></div>';
+  var h='<div class="mb-h">次回セミナーのご案内</div>';
+  h+='<div class="seg-sm"><button class="'+(state.annaiType==="text"?"on":"")+'" data-annai="text">テキストで掲載</button>'+
+     '<button class="'+(state.annaiType==="flyer"?"on":"")+'" data-annai="flyer">フライヤー画像で掲載</button></div>';
+  h+='<div class="annai-wrap">';
+  if(state.annaiType==="flyer"){
+    h+='<div class="flyer"><div class="fk">DENTAL SEMINAR</div><div class="fttl">歯周治療における<br>音波スケーラーの活用</div>'+
+       '<div class="fmid">2026年7月20日(日)<br>13:00〜16:00<br>オンライン開催</div><div class="fimg">▲ アップロードしたフライヤー画像</div></div>';
+    h+='<div class="annai-side"><div class="kv"><b>日時：</b>7月20日(日) 13:00〜16:00<br><b>形式：</b>オンライン（Zoom）<br><b>定員：</b>50名</div>'+
+       '<div style="margin-top:14px">'+cta+'</div></div>';
+  } else {
+    h+='<div class="annai-side" style="flex-basis:100%"><div class="as-ttl">歯周治療における音波スケーラーの活用</div>'+
+       '<div class="as-d">音波スケーラーの基礎理論から臨床での使い分けまで、症例を交えて解説します。歯科衛生士の日々の診療にすぐ活かせる内容です。</div>'+
+       '<div class="kv"><b>日時：</b>7月20日(日) 13:00〜16:00<br><b>形式：</b>オンライン（Zoom）<br><b>定員：</b>50名</div>'+
+       '<div style="margin-top:14px">'+cta+'</div></div>';
   }
+  h+='</div>';
+  return h;
+}
 
-  var spreadTxt=state.spread==="mid"?'サイト外では再生不可（ドメイン制限＋署名URL）':'ログイン必須のみ（URLの持ち出しは防がない）';
-  var expiryTxt=state.expiry?'動画ごとに「公開から○日」で自動的に視聴終了':'期限なし（いつでも視聴可）';
-  h+='<div class="apanel"><div class="ap-h"><span>⚙️ 動画の保護・公開設定</span></div>'+
-     '<div class="ap-body"><div class="adm-note">拡散防止：<b>'+spreadTxt+'</b><br>視聴期限：<b>'+expiryTxt+'</b></div></div></div>';
-
+function adminView(){
+  var pages=adminPages();
+  if(!pages.some(function(p){return p.k===state.apage;})) state.apage=pages[0].k;
+  var h='<div class="adm"><div class="adm-side"><div class="as-brand">WordPress 管理</div>';
+  pages.forEach(function(p){h+='<div class="as-item'+(p.k===state.apage?" on":"")+'" data-apage="'+p.k+'"><span class="ai">'+p.ic+'</span>'+p.label+'</div>';});
+  h+='</div><div class="adm-main">';
+  var B={dash:adDash,videos:adVideos,members:adMembers,messages:adMessages,assign:adAssign,annai_edit:adAnnaiEdit,report:adReport,settings:adSettings};
+  h+=(B[state.apage]||adDash)();
   h+='</div></div>';
   return h;
 }
 
+function adDash(){
+  var X=state.moushikomi;
+  var h='<div class="am-h">ダッシュボード</div><div class="am-sub">サイト全体の状況をひと目で確認できます。</div>';
+  h+='<div class="acards">'+acard("登録会員","128 名")+(X?acard("今回の参加者","42 名"):"")+acard("動画の総再生数","1,034 回")+acard("概算ユニーク再生","約 610")+'</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>最近のうごき</span></div><div class="ap-body"><div class="adm-note">・新しい受講者が3名 動画を視聴しました<br>・「スケーリング実技デモ」の再生が増えています</div></div></div>';
+  return h;
+}
+
+function adVideos(){
+  var prot=state.spread==="mid"?'<span class="tag ok">サイト内のみ</span>':'<span class="tag wait">ログインのみ</span>';
+  var exp=state.expiry?"公開30日":"期限なし";
+  var h='<div class="am-h">コース・動画</div><div class="am-sub">動画ごとに保護・期限・再生数を管理します。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>動画一覧</span><span class="ap-act">＋ 新しい動画</span></div>';
+  [["基礎から学ぶ歯周治療 第1回","512 回"],["スケーリング実技デモ","389 回"],["症例検討カンファレンス","133 回"]].forEach(function(v){
+    h+='<div class="vlist-row"><div class="vl-n">'+v[0]+'　'+prot+'</div><span class="vl-t">'+exp+'　｜　'+v[1]+'　｜ 編集</span></div>';
+  });
+  h+='</div>';
+  return h;
+}
+
+function adMembers(){
+  var headPay=state.kessai?'<th>入金状態</th>':'<th>入金状態（手動）</th>';
+  var payOk=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag ok">入金確認済</span>';
+  var payWait=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag wait">未入金</span>';
+  var h='<div class="am-h">参加者</div><div class="am-sub">セミナー別に参加者を確認・書き出しできます。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>参加者リスト（7/20 セミナー）</span><span class="ap-act">⬇ CSVダウンロード</span></div>';
+  h+='<table class="atable"><thead><tr><th>お名前</th><th>申込日</th>'+headPay+'<th>受講状況</th></tr></thead><tbody>';
+  h+='<tr><td>田中 花子</td><td>7/2</td><td>'+payOk+'</td><td>視聴中</td></tr>';
+  h+='<tr><td>佐藤 美咲</td><td>7/3</td><td>'+payWait+'</td><td>未視聴</td></tr>';
+  h+='<tr><td>鈴木 由美</td><td>7/5</td><td>'+payOk+'</td><td>視聴完了</td></tr>';
+  h+='</tbody></table>';
+  if(!state.kessai) h+='<div class="mini-note">※ 銀行振込のため、入金を確認したらチェックを付ける運用です（決済をONにすると自動で「決済済」になります）。</div>';
+  h+='</div>';
+  return h;
+}
+
+function adMessages(){
+  var h='<div class="am-h">メッセージ</div><div class="am-sub">参加者へ一斉・個別にメールを送れます。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>✉️ メッセージを作成</span></div><div class="ap-body">';
+  h+='<div class="frow"><label>宛先</label><select class="fsel"><option>7/20 セミナーの参加者 全員（42名）</option><option>個別に選択…</option><option>未入金の方のみ</option></select></div>';
+  h+='<div class="frow"><label>件名</label><input class="finput" value="【リマインド】7/20 セミナーのご案内"></div>';
+  h+='<div class="frow"><label>本文</label><textarea class="ftext">明日のセミナーのご案内です。お時間になりましたらマイページからご視聴ください。</textarea></div>';
+  h+='<button class="fbtn">送信する</button>';
+  h+='</div></div>';
+  return h;
+}
+
+function adAssign(){
+  var h='<div class="am-h">受講者・割当</div><div class="am-sub">受講者を登録し、見られる動画を割り当てます（申込・参加者管理はありません）。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>受講者を追加</span></div><div class="ap-body">'+
+     '<div class="frow"><label>お名前・メールアドレス</label><input class="finput" placeholder="例）田中 花子　hanako@example.com"></div>'+
+     '<button class="fbtn">追加して動画を割り当てる</button></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>受講者と割り当て動画</span></div>'+
+     '<table class="atable"><thead><tr><th>お名前</th><th>割り当てた動画</th><th></th></tr></thead><tbody>'+
+     '<tr><td>田中 花子</td><td>歯周治療 第1回 ＋ 1本</td><td>編集</td></tr>'+
+     '<tr><td>佐藤 美咲</td><td>スケーリング実技デモ</td><td>編集</td></tr></tbody></table></div>';
+  return h;
+}
+
+function adAnnaiEdit(){
+  var h='<div class="am-h">案内の作成</div><div class="am-sub">受講者の「セミナー案内」ページに表示する内容を作ります。テキストでもフライヤー画像でも掲載できます。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>📢 次回セミナーの案内</span><span class="ap-act">公開する</span></div><div class="ap-body">';
+  h+='<div class="seg-sm"><button class="'+(state.annaiType==="text"?"on":"")+'" data-annai="text">テキストで作る</button>'+
+     '<button class="'+(state.annaiType==="flyer"?"on":"")+'" data-annai="flyer">フライヤー画像を貼る</button></div>';
+  h+='<div class="frow"><label>タイトル</label><input class="finput" value="歯周治療における音波スケーラーの活用"></div>';
+  h+='<div class="frow"><label>日時</label><input class="finput" value="2026年7月20日(日) 13:00〜16:00　オンライン"></div>';
+  if(state.annaiType==="flyer"){
+    h+='<div class="frow"><label>フライヤー画像</label><div class="uphas"><div class="upthumb"></div>'+
+       '<div class="adm-note"><b>seminar_0720.jpg</b> をアップロード済み<br><span style="color:var(--accent)">画像を差し替える</span></div></div></div>';
+    h+='<div class="frow"><label>補足テキスト（任意）</label><textarea class="ftext" placeholder="画像に書ききれない補足があれば入力"></textarea></div>';
+  } else {
+    h+='<div class="frow"><label>本文</label><textarea class="ftext">音波スケーラーの基礎理論から臨床での使い分けまで、症例を交えて解説します。</textarea></div>';
+    h+='<div class="frow"><label>画像（任意）</label><div class="upbox"><span class="upic">🖼</span>フライヤー画像をドラッグ＆ドロップ、またはクリックして選択</div></div>';
+  }
+  h+='<button class="fbtn">公開する</button> <button class="fbtn sub">下書き保存</button>';
+  h+='</div></div>';
+  return h;
+}
+
+function adReport(){
+  var h='<div class="am-h">再生レポート</div><div class="am-sub">Bunny Stream の分析。動画ごとの総再生回数と概算ユニーク再生を確認できます。</div>';
+  h+='<div class="acards">'+acard("総再生数","1,034 回")+acard("概算ユニーク再生","約 610")+acard("平均視聴完了率","68%")+'</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>動画別の再生数</span></div><div class="ap-body">';
+  [["基礎から学ぶ歯周治療 第1回",512,100],["スケーリング実技デモ",389,76],["症例検討カンファレンス",133,26]].forEach(function(v){
+    h+='<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12.5px"><span>'+v[0]+'</span><span class="vl-t">'+v[1]+' 回</span></div><div class="bar"><i style="width:'+v[2]+'%"></i></div></div>';
+  });
+  h+='<div class="adm-note" style="margin-top:4px">※ ユニーク再生はセッション基準の概算です（会員ごとの厳密な集計は行いません）。</div>';
+  h+='</div></div>';
+  return h;
+}
+
+function adSettings(){
+  var h='<div class="am-h">設定</div><div class="am-sub">動画の保護レベルや視聴期限などの基本設定です。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>🔒 拡散防止レベル</span></div><div class="ap-body"><div class="adm-note">'+
+     (state.spread==="mid"?'● <b>中：サイト外では再生不可</b>（ドメイン制限＋署名URL）<br>○ 弱：ログイン必須のみ':'○ 中：サイト外では再生不可（ドメイン制限＋署名URL）<br>● <b>弱：ログイン必須のみ</b>')+
+     '</div></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>⏱ 視聴期限</span></div><div class="ap-body"><div class="adm-note">'+
+     (state.expiry?'● <b>動画ごとに「公開から○日」で自動終了</b><br>○ 期限なし':'○ 動画ごとに「公開から○日」で自動終了<br>● <b>期限なし（いつでも視聴可）</b>')+
+     '</div></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>🎬 動画ホスティング</span></div><div class="ap-body"><div class="adm-note">Bunny Stream と連携済み。動画をアップロードすると自動で保護され、会員サイト内のプレーヤーで配信されます。</div></div></div>';
+  return h;
+}
+
 function renderPreview(){
-  document.getElementById("pv-url").textContent=
-    state.preview==="member"?"https://（先生のサイト）/mypage　— 受講者のマイページ":"https://（先生のサイト）/wp-admin　— 管理画面";
-  document.getElementById("pv-screen").innerHTML=
-    state.preview==="member"?memberScreen():adminScreen();
+  var url;
+  if(state.preview==="member"){var mp=memberPages();if(!mp.some(function(p){return p.k===state.mpage;}))state.mpage=mp[0].k;url=findUrl(mp,state.mpage);}
+  else{var ap=adminPages();if(!ap.some(function(p){return p.k===state.apage;}))state.apage=ap[0].k;url=findUrl(ap,state.apage);}
+  document.getElementById("pv-url").textContent="https://（先生のサイト）"+url;
+  document.getElementById("pv-screen").innerHTML=state.preview==="member"?memberView():adminView();
+  // 上位セグメント（受講者／管理者）
   var seg=document.getElementById("pv-seg");
   Array.prototype.forEach.call(seg.children,function(b){
     b.className=(b.getAttribute("data-v")===state.preview)?"active":"";
     b.onclick=function(){state.preview=b.getAttribute("data-v");renderAll();};
   });
+  // ページ切替（タブ・サイドバー・動画クリック・案内形式）
+  var scr=document.getElementById("pv-screen");
+  Array.prototype.forEach.call(scr.querySelectorAll("[data-mtab]"),function(el){el.onclick=function(){state.mpage=el.getAttribute("data-mtab");renderAll();};});
+  Array.prototype.forEach.call(scr.querySelectorAll("[data-apage]"),function(el){el.onclick=function(){state.apage=el.getAttribute("data-apage");renderAll();};});
+  Array.prototype.forEach.call(scr.querySelectorAll("[data-annai]"),function(el){el.onclick=function(){state.annaiType=el.getAttribute("data-annai");renderAll();};});
 }
 
 function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();renderPreview();}
