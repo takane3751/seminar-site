@@ -126,7 +126,6 @@
 
   <div class="metrics">
     <div class="metric"><div class="ml">想定の月額維持費</div><div class="mv" id="m-month">—</div></div>
-    <div class="metric"><div class="ml">初期の作り込み</div><div class="mv" id="m-init">—</div></div>
     <div class="metric"><div class="ml">満たせる要件</div><div class="mv" id="m-req">—</div></div>
   </div>
 
@@ -196,17 +195,13 @@ function computeCost(){
   if(state.moushikomi) month+=state.budget==="free"?1000:3500; else month+=state.budget==="free"?300:1200;
   if(state.spread==="mid") month+=300;
   if(state.annaai&&state.budget==="allow") month+=800;
-  var initDays=0;
-  if(state.moushikomi) initDays+=1;
-  if(state.spread==="mid") initDays+=0.5;
-  var init=initDays<=0.5?"ほぼ設定のみ":(initDays<=1.5?"約1〜2日":"約2〜3日");
   var label;
   if(month<=600) label="実質0〜1,000円";
   else if(month<=2000) label="約1,000〜2,000円";
   else if(month<=4000) label="約3,000〜5,000円";
   else label="約5,000〜7,000円";
   if(state.kessai) label+="＋手数料";
-  return {monthLabel:label,init:init};
+  return {monthLabel:label};
 }
 
 function toggleBool(key){
@@ -288,7 +283,6 @@ function renderReqs(){
 function renderCost(){
   var c=computeCost();
   document.getElementById("m-month").textContent=c.monthLabel;
-  document.getElementById("m-init").textContent=c.init;
 }
 
 function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();}
