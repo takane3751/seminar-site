@@ -332,6 +332,27 @@
   .sp .atable th,.sp .atable td{padding:7px 8px;}
   .sp .ptabs{gap:12px; font-size:11.5px;}
 
+  /* 利用の流れ（相関フロー） */
+  .flow-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:34px 0 6px;}
+  .flow-head h3{margin:0;}
+  .flow-head-row,.flow-row{display:grid; grid-template-columns:26px 1fr 1fr; gap:12px;}
+  .flow-head-row{margin-bottom:8px;}
+  .flow-row{margin-bottom:10px; align-items:stretch;}
+  .flow-h{font-size:12.5px; font-weight:600; padding:6px 4px;}
+  .flow-h.u{color:var(--accent);}
+  .flow-h.t{color:var(--success);}
+  .fnum{background:var(--accent); color:#fff; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; align-self:start; margin-top:11px; flex-shrink:0;}
+  .fcell{background:var(--surface); border:0.5px solid var(--border); border-radius:10px; padding:12px 14px;}
+  .fcell.u{border-left:3px solid var(--accent);}
+  .fcell.t{border-left:3px solid var(--success);}
+  .fcell .fc-role{font-size:10px; color:var(--text-3); letter-spacing:.04em; margin-bottom:3px;}
+  .fcell .fc-txt{font-size:12.5px; line-height:1.65;}
+  @media (max-width:700px){
+    .flow-head-row{display:none;}
+    .flow-row{grid-template-columns:1fr; gap:8px; margin-bottom:16px; border-left:2px solid var(--border); padding-left:12px;}
+    .fnum{display:none;}
+  }
+
   .foot{margin-top:32px; font-size:12px; color:var(--text-3); text-align:center; line-height:1.8;}
 </style>
 </head>
@@ -402,6 +423,16 @@
   <div id="pv-frame"></div>
   <p class="pv-cap">※ 受講者側は本サイトのデザインイメージ（写真は後日差し替え）。管理者側は、実際に導入するプラグイン（Tutor LMS・MailPoet・WooCommerce・Bunny 等）の標準画面に沿ったイメージで、加えて先生用の「かんたん運用メニュー」を1枚だけ用意します。文中の氏名・日程はサンプルです。</p>
 
+  <div class="flow-head">
+    <h3>利用の流れ（選択中の構成の場合）</h3>
+    <div class="seg" id="pv-persona">
+      <button data-p="new">はじめての衛生士</button>
+      <button data-p="existing">受講済みの衛生士</button>
+    </div>
+  </div>
+  <p class="pv-note">上の構成スイッチに連動します。左が<b>受講者（衛生士）</b>、右が<b>先生（運営）</b>の流れで、<b>同じ行が対応</b>しています。</p>
+  <div id="flow"></div>
+
   <div class="foot">
     費用は2026年6月時点の概算・税別。為替やサービス改定で変動します。<br>
     Passione / G TECH JAPAN　石原先生 セミナー会員サイト 仕様検討用
@@ -409,7 +440,7 @@
 </div>
 
 <script>
-var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",device:"pc",feAuth:"guest",gpage:"top",mpage:"mypage",apage:"ops",annaiType:"flyer"};
+var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",device:"pc",feAuth:"guest",gpage:"top",mpage:"mypage",apage:"ops",annaiType:"flyer",persona:"new"};
 
 var TOGGLES=[
   {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
@@ -880,7 +911,44 @@ function wireSeg(id,attr,current,setter){
   });
 }
 
-function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();renderPreview();}
+/* ===== 利用の流れ（受講者×先生の相関） ===== */
+function computeFlow(){
+  var X=state.moushikomi, K=state.kessai, EX=(state.persona==="existing");
+  var s=[];
+  s.push({u:"会員登録（無料）／登録時に「医院所属・フリーランス」を選択",t:"（自動で会員登録）会員一覧で確認できる"});
+  if(EX){
+    s.push({u:"過去に受講した講習の紐付けを申請（または登録時に選択）",t:"過去の受講を確認し、その会員に過去講習を紐付け（手動／CSV取込）"});
+  }
+  if(X){
+    s.push({u:"講習の案内を見る",t:"案内を作成・公開（投稿／フライヤー）し、メール・LINEで告知"});
+    s.push({u:"申し込む（サイト内の申込フォーム）",t:"申込を受け取り、参加者一覧で確認"});
+    if(K){
+      s.push({u:"その場でクレジットカード決済",t:"決済は自動で確定（入金確認の手間なし）"});
+    } else {
+      s.push({u:"振込のご案内を受け取り、入金する",t:"振込のご案内を送付（自動返信／メール）"});
+      s.push({u:"（入金の確認を待つ）",t:"入金を確認して「入金済」フラグ＋受講登録（紐付け）"});
+    }
+    s.push({u:"受講（当日、講習に参加）",t:"講習を実施"});
+    s.push({u:"講習後、動画が公開され視聴できる"+(state.expiry?"（視聴期限あり）":""),t:"動画をアップロード・公開しコースに紐付け"+(state.expiry?"＋視聴期限を設定":"")});
+  } else {
+    s.push({u:"（管理者に受講者として登録される）",t:"受講者を登録し、見せる動画を割り当て"});
+    s.push({u:"動画が公開され視聴できる"+(state.expiry?"（視聴期限あり）":""),t:"動画をアップロード・公開"+(state.expiry?"＋視聴期限を設定":"")});
+  }
+  return s;
+}
+function renderFlow(){
+  var st=computeFlow();
+  var h='<div class="flow-head-row"><span></span><div class="flow-h u">🦷 受講者（衛生士）</div><div class="flow-h t">👩‍🏫 先生（運営）</div></div>';
+  st.forEach(function(s,i){
+    h+='<div class="flow-row"><span class="fnum">'+(i+1)+'</span>'+
+       '<div class="fcell u"><div class="fc-role">受講者</div><div class="fc-txt">'+s.u+'</div></div>'+
+       '<div class="fcell t"><div class="fc-role">先生</div><div class="fc-txt">'+s.t+'</div></div></div>';
+  });
+  document.getElementById("flow").innerHTML=h;
+  wireSeg("pv-persona","data-p",state.persona,function(v){state.persona=v;});
+}
+
+function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();renderPreview();renderFlow();}
 renderAll();
 </script>
 </body>
