@@ -222,6 +222,28 @@
   .bar{height:8px; border-radius:5px; background:#e5e5e7; overflow:hidden; margin-top:5px;}
   .bar i{display:block; height:100%; background:var(--accent); border-radius:5px;}
 
+  /* プラグイン標準画面の見出し・タブ・外部注記 */
+  .pbrand{display:flex; align-items:center; gap:9px; background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:11px 14px; font-size:13px; font-weight:600; margin-bottom:12px;}
+  .pbrand .pb-ic{width:22px; height:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; flex-shrink:0;}
+  .pbrand small{font-weight:400; color:var(--text-3); font-size:11px; margin-left:auto;}
+  .ptabs{display:flex; gap:16px; border-bottom:0.5px solid #e5e5e7; margin:0 0 14px; font-size:12.5px; overflow-x:auto;}
+  .ptabs span{padding:9px 0; color:var(--text-3); border-bottom:2px solid transparent; white-space:nowrap;}
+  .ptabs span.on{color:var(--text); border-bottom-color:var(--accent); font-weight:600;}
+  .ext-note{background:#fff7e6; border:0.5px solid #f0d9a8; border-radius:6px; padding:10px 13px; font-size:11.5px; color:#8a6d1f; margin-bottom:13px; line-height:1.65;}
+  /* かんたん運用メニュー（カスタムページ） */
+  .ops-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:11px;}
+  .ops-card{background:#fff; border:0.5px solid #dcdcde; border-radius:8px; padding:14px 15px; cursor:pointer; transition:box-shadow .15s;}
+  .ops-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.09);}
+  .ops-card .oc-ic{font-size:21px;}
+  .ops-card .oc-t{font-size:13px; font-weight:600; margin:8px 0 3px;}
+  .ops-card .oc-d{font-size:11.5px; color:var(--text-3); line-height:1.65;}
+  .ops-card .oc-go{font-size:11px; color:var(--accent); margin-top:9px;}
+  /* Gutenberg 風 */
+  .gb-bar{display:flex; justify-content:space-between; align-items:center; background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:9px 14px; margin-bottom:12px; font-size:12px; color:var(--text-3);}
+  .gb-title{border:none; border-bottom:1px dashed #d0d0d3; font-size:20px; font-weight:700; font-family:inherit; padding:6px 2px; width:100%; color:var(--text); margin-bottom:14px; background:transparent;}
+  .gb-block{border:0.5px solid #e5e5e7; border-radius:6px; padding:14px; margin-bottom:10px; font-size:12.5px; color:var(--text-2); line-height:1.85; background:#fff;}
+  .gb-img{display:flex; gap:12px; align-items:center;}
+
   .foot{margin-top:32px; font-size:12px; color:var(--text-3); text-align:center; line-height:1.8;}
 </style>
 </head>
@@ -280,7 +302,7 @@
     <div class="bbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url" id="pv-url"></span></div>
     <div class="screen" id="pv-screen"></div>
   </div>
-  <p class="pv-cap">※ ページの構成・項目は実際の制作物に沿ったイメージです。色やボタンなどの見た目は、採用するデザインテーマに合わせて制作時に整えます。文中の氏名・日程はサンプルです。</p>
+  <p class="pv-cap">※ 受講者側は本サイトのデザインイメージ（写真は後日差し替え）。管理者側は、実際に導入するプラグイン（Tutor LMS・MailPoet・WooCommerce・Bunny 等）の標準画面に沿ったイメージで、加えて先生用の「かんたん運用メニュー」を1枚だけ用意します。文中の氏名・日程はサンプルです。</p>
 
   <div class="foot">
     費用は2026年6月時点の概算・税別。為替やサービス改定で変動します。<br>
@@ -289,7 +311,7 @@
 </div>
 
 <script>
-var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",mpage:"mypage",apage:"dash",annaiType:"flyer"};
+var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",mpage:"mypage",apage:"ops",annaiType:"flyer"};
 
 var TOGGLES=[
   {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
@@ -447,12 +469,14 @@ function memberPages(){
 }
 function adminPages(){
   var X=state.moushikomi;
-  var p=[{k:"dash",ic:"📊",label:"ダッシュボード",url:"/wp-admin"},{k:"videos",ic:"🎬",label:"コース・動画",url:"/wp-admin/courses"}];
-  if(X){p.push({k:"members",ic:"👥",label:"参加者",url:"/wp-admin/members"});p.push({k:"messages",ic:"✉️",label:"メッセージ",url:"/wp-admin/messages"});}
-  else{p.push({k:"assign",ic:"👤",label:"受講者・割当",url:"/wp-admin/students"});}
-  if(state.annaai) p.push({k:"annai_edit",ic:"📢",label:"案内の作成",url:"/wp-admin/seminar"});
-  p.push({k:"report",ic:"📈",label:"再生レポート",url:"/wp-admin/analytics"});
-  p.push({k:"settings",ic:"⚙️",label:"設定",url:"/wp-admin/settings"});
+  var p=[{k:"ops",ic:"✨",label:"かんたん運用",url:"/wp-admin/admin.php?page=ops"},
+         {k:"dash",ic:"⌂",label:"ダッシュボード",url:"/wp-admin/"},
+         {k:"tutor",ic:"🎓",label:"Tutor LMS",url:"/wp-admin/admin.php?page=tutor"}];
+  if(state.annaai) p.push({k:"post",ic:"✎",label:"投稿（案内）",url:"/wp-admin/edit.php"});
+  if(state.kessai) p.push({k:"woo",ic:"🛒",label:"WooCommerce",url:"/wp-admin/admin.php?page=wc-orders"});
+  if(X||state.annaai) p.push({k:"mail",ic:"✉",label:"MailPoet",url:"/wp-admin/admin.php?page=mailpoet"});
+  p.push({k:"bunny",ic:"🎬",label:"Bunny（動画）",url:"https://dash.bunny.net/stream"});
+  p.push({k:"settings",ic:"⚙",label:"設定",url:"/wp-admin/options-general.php"});
   return p;
 }
 
@@ -531,112 +555,134 @@ function adminView(){
   var h='<div class="adm"><div class="adm-side"><div class="as-brand">WordPress 管理</div>';
   pages.forEach(function(p){h+='<div class="as-item'+(p.k===state.apage?" on":"")+'" data-apage="'+p.k+'"><span class="ai">'+p.ic+'</span>'+p.label+'</div>';});
   h+='</div><div class="adm-main">';
-  var B={dash:adDash,videos:adVideos,members:adMembers,messages:adMessages,assign:adAssign,annai_edit:adAnnaiEdit,report:adReport,settings:adSettings};
-  h+=(B[state.apage]||adDash)();
+  var B={ops:adOps,dash:adDash,tutor:adTutor,post:adPost,woo:adWoo,mail:adMail,bunny:adBunny,settings:adSettings};
+  h+=(B[state.apage]||adOps)();
   h+='</div></div>';
+  return h;
+}
+
+function pbrand(name,color,note){
+  return '<div class="pbrand"><span class="pb-ic" style="background:'+color+'">'+name.charAt(0)+'</span>'+name+'<small>'+note+'</small></div>';
+}
+function opsCard(ic,t,d,go){
+  return '<div class="ops-card" data-apage="'+go+'"><div class="oc-ic">'+ic+'</div><div class="oc-t">'+t+'</div><div class="oc-d">'+d+'</div><div class="oc-go">→ 開く</div></div>';
+}
+
+/* 先生専用のカスタム運用ページ（ハイブリッドの「1枚だけ」の追加） */
+function adOps(){
+  var X=state.moushikomi;
+  var h='<div class="am-h">かんたん運用メニュー</div><div class="am-sub">先生がよく使う操作の入口をまとめた専用ページです（この1枚だけ当方で用意）。各ボタンから実際の操作画面へ進みます。</div>';
+  h+='<div class="ops-grid">';
+  h+=opsCard("🎬","動画をアップロード","新しいセミナー動画をアップロードして保護します。","bunny");
+  h+=opsCard("🎓",X?"受講者・申込を管理":"受講者を追加・割当",X?"参加者の登録・受講状況を確認します。":"受講者を登録し、見られる動画を割り当てます。","tutor");
+  if(state.annaai) h+=opsCard("✎","セミナー案内を作る","次回セミナーの案内（テキスト／フライヤー画像）を作成・公開します。","post");
+  if(X||state.annaai) h+=opsCard("✉","参加者にメールを送る","リマインドや資料配布のメールを一斉／個別に送ります。","mail");
+  if(state.kessai) h+=opsCard("💳","入金（決済）を確認","カード決済の注文と入金状況を確認します。","woo");
+  else if(X) h+=opsCard("💴","入金を確認（振込）","銀行振込の入金を確認し、受講可能にします。","tutor");
+  h+=opsCard("📈","再生数・視聴状況を見る","動画ごとの再生回数などを確認します。","bunny");
+  h+='</div>';
+  h+='<div class="apanel" style="margin-top:14px"><div class="ap-body"><div class="adm-note">※ このページは操作をラクにするための「入口」です。実際の各操作は、下メニューの各ツール標準画面（Tutor LMS・MailPoet 等）で行います。</div></div></div>';
   return h;
 }
 
 function adDash(){
+  var h='<div class="am-h">ダッシュボード</div><div class="am-sub">WordPress の標準ホーム画面です。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>WordPress へようこそ！</span></div><div class="ap-body"><div class="adm-note">サイトの管理はここから。左のメニューから各機能に移動できます。</div></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>概要</span></div><div class="ap-body"><div class="adm-note">🎓 コース 3件　／　👥 受講者 128名　／　✎ 投稿（案内）5件</div></div></div>';
+  return h;
+}
+
+/* Tutor LMS（プラグイン標準画面） */
+function adTutor(){
   var X=state.moushikomi;
-  var h='<div class="am-h">ダッシュボード</div><div class="am-sub">サイト全体の状況をひと目で確認できます。</div>';
-  h+='<div class="acards">'+acard("登録会員","128 名")+(X?acard("今回の参加者","42 名"):"")+acard("動画の総再生数","1,034 回")+acard("概算ユニーク再生","約 610")+'</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>最近のうごき</span></div><div class="ap-body"><div class="adm-note">・新しい受講者が3名 動画を視聴しました<br>・「スケーリング実技デモ」の再生が増えています</div></div></div>';
-  return h;
-}
-
-function adVideos(){
-  var prot=state.spread==="mid"?'<span class="tag ok">サイト内のみ</span>':'<span class="tag wait">ログインのみ</span>';
-  var exp=state.expiry?"公開30日":"期限なし";
-  var h='<div class="am-h">コース・動画</div><div class="am-sub">動画ごとに保護・期限・再生数を管理します。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>動画一覧</span><span class="ap-act">＋ 新しい動画</span></div>';
-  [["基礎から学ぶ歯周治療 第1回","512 回"],["スケーリング実技デモ","389 回"],["症例検討カンファレンス","133 回"]].forEach(function(v){
-    h+='<div class="vlist-row"><div class="vl-n">'+v[0]+'　'+prot+'</div><span class="vl-t">'+exp+'　｜　'+v[1]+'　｜ 編集</span></div>';
-  });
+  var h=pbrand("Tutor LMS","#1d7a6e","LMSプラグイン");
+  h+='<div class="ptabs"><span>ダッシュボード</span><span class="on">受講者</span><span>コース</span><span>登録状況</span><span>設定</span></div>';
+  h+='<div class="acards">'+acard("コース","3")+acard("受講者","128 名")+acard(X?"今回の登録":"割当済み",X?"42 名":"—")+'</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>受講者一覧</span><span class="ap-act">⬇ CSV</span></div>';
+  if(X){
+    h+='<table class="atable"><thead><tr><th>受講者</th><th>登録セミナー</th><th>登録日</th><th>進捗</th></tr></thead><tbody>'+
+       '<tr><td>田中 花子</td><td>歯周治療 第1回</td><td>7/2</td><td>視聴中 40%</td></tr>'+
+       '<tr><td>佐藤 美咲</td><td>歯周治療 第1回</td><td>7/3</td><td>未視聴 0%</td></tr>'+
+       '<tr><td>鈴木 由美</td><td>スケーリング実技</td><td>7/5</td><td>完了 100%</td></tr></tbody></table>';
+    if(!state.kessai) h+='<div class="mini-note">※ 銀行振込の入金確認は、この受講者を「登録（enroll）」する操作で反映します（決済ONの場合はWooCommerceで自動登録）。</div>';
+  } else {
+    h+='<table class="atable"><thead><tr><th>受講者</th><th>割り当てた動画</th><th>進捗</th></tr></thead><tbody>'+
+       '<tr><td>田中 花子</td><td>歯周治療 第1回 ＋1本</td><td>視聴中</td></tr>'+
+       '<tr><td>佐藤 美咲</td><td>スケーリング実技</td><td>未視聴</td></tr></tbody></table>';
+  }
   h+='</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>コースのアクセス設定</span></div><div class="ap-body"><div class="adm-note">視聴期限：<b>'+(state.expiry?"公開から30日で自動終了（コース単位）":"期限なし")+'</b></div></div></div>';
   return h;
 }
 
-function adMembers(){
-  var headPay=state.kessai?'<th>入金状態</th>':'<th>入金状態（手動）</th>';
-  var payOk=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag ok">入金確認済</span>';
-  var payWait=state.kessai?'<span class="tag ok">カード決済済</span>':'<span class="tag wait">未入金</span>';
-  var h='<div class="am-h">参加者</div><div class="am-sub">セミナー別に参加者を確認・書き出しできます。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>参加者リスト（7/20 セミナー）</span><span class="ap-act">⬇ CSVダウンロード</span></div>';
-  h+='<table class="atable"><thead><tr><th>お名前</th><th>申込日</th>'+headPay+'<th>受講状況</th></tr></thead><tbody>';
-  h+='<tr><td>田中 花子</td><td>7/2</td><td>'+payOk+'</td><td>視聴中</td></tr>';
-  h+='<tr><td>佐藤 美咲</td><td>7/3</td><td>'+payWait+'</td><td>未視聴</td></tr>';
-  h+='<tr><td>鈴木 由美</td><td>7/5</td><td>'+payOk+'</td><td>視聴完了</td></tr>';
-  h+='</tbody></table>';
-  if(!state.kessai) h+='<div class="mini-note">※ 銀行振込のため、入金を確認したらチェックを付ける運用です（決済をONにすると自動で「決済済」になります）。</div>';
-  h+='</div>';
-  return h;
-}
-
-function adMessages(){
-  var h='<div class="am-h">メッセージ</div><div class="am-sub">参加者へ一斉・個別にメールを送れます。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>✉️ メッセージを作成</span></div><div class="ap-body">';
-  h+='<div class="frow"><label>宛先</label><select class="fsel"><option>7/20 セミナーの参加者 全員（42名）</option><option>個別に選択…</option><option>未入金の方のみ</option></select></div>';
-  h+='<div class="frow"><label>件名</label><input class="finput" value="【リマインド】7/20 セミナーのご案内"></div>';
-  h+='<div class="frow"><label>本文</label><textarea class="ftext">明日のセミナーのご案内です。お時間になりましたらマイページからご視聴ください。</textarea></div>';
-  h+='<button class="fbtn">送信する</button>';
-  h+='</div></div>';
-  return h;
-}
-
-function adAssign(){
-  var h='<div class="am-h">受講者・割当</div><div class="am-sub">受講者を登録し、見られる動画を割り当てます（申込・参加者管理はありません）。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>受講者を追加</span></div><div class="ap-body">'+
-     '<div class="frow"><label>お名前・メールアドレス</label><input class="finput" placeholder="例）田中 花子　hanako@example.com"></div>'+
-     '<button class="fbtn">追加して動画を割り当てる</button></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>受講者と割り当て動画</span></div>'+
-     '<table class="atable"><thead><tr><th>お名前</th><th>割り当てた動画</th><th></th></tr></thead><tbody>'+
-     '<tr><td>田中 花子</td><td>歯周治療 第1回 ＋ 1本</td><td>編集</td></tr>'+
-     '<tr><td>佐藤 美咲</td><td>スケーリング実技デモ</td><td>編集</td></tr></tbody></table></div>';
-  return h;
-}
-
-function adAnnaiEdit(){
-  var h='<div class="am-h">案内の作成</div><div class="am-sub">受講者の「セミナー案内」ページに表示する内容を作ります。テキストでもフライヤー画像でも掲載できます。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>📢 次回セミナーの案内</span><span class="ap-act">公開する</span></div><div class="ap-body">';
+/* 投稿（Gutenbergブロックエディタ）＝セミナー案内の作成 */
+function adPost(){
+  var h='<div class="am-h">投稿の編集</div><div class="am-sub">セミナー案内は WordPress の「投稿」として作成します（フライヤーはアイキャッチ画像）。</div>';
+  h+='<div class="gb-bar"><span>下書き · 自動保存しました</span><span style="color:var(--accent);font-weight:600">公開する</span></div>';
   h+='<div class="seg-sm"><button class="'+(state.annaiType==="text"?"on":"")+'" data-annai="text">テキストで作る</button>'+
      '<button class="'+(state.annaiType==="flyer"?"on":"")+'" data-annai="flyer">フライヤー画像を貼る</button></div>';
-  h+='<div class="frow"><label>タイトル</label><input class="finput" value="歯周治療における音波スケーラーの活用"></div>';
-  h+='<div class="frow"><label>日時</label><input class="finput" value="2026年7月20日(日) 13:00〜16:00　オンライン"></div>';
+  h+='<input class="gb-title" value="歯周治療における音波スケーラーの活用">';
   if(state.annaiType==="flyer"){
-    h+='<div class="frow"><label>フライヤー画像</label><div class="uphas"><div class="upthumb"></div>'+
-       '<div class="adm-note"><b>seminar_0720.jpg</b> をアップロード済み<br><span style="color:var(--accent)">画像を差し替える</span></div></div></div>';
-    h+='<div class="frow"><label>補足テキスト（任意）</label><textarea class="ftext" placeholder="画像に書ききれない補足があれば入力"></textarea></div>';
+    h+='<div class="gb-block"><div class="gb-img"><div class="upthumb"></div><div class="adm-note"><b>画像ブロック</b>：seminar_0720.jpg<br><span style="color:var(--accent)">アイキャッチ画像に設定済み</span></div></div></div>';
+    h+='<div class="gb-block">日時：7月20日(日) 13:00〜16:00／オンライン（Zoom）／定員50名</div>';
   } else {
-    h+='<div class="frow"><label>本文</label><textarea class="ftext">音波スケーラーの基礎理論から臨床での使い分けまで、症例を交えて解説します。</textarea></div>';
-    h+='<div class="frow"><label>画像（任意）</label><div class="upbox"><span class="upic">🖼</span>フライヤー画像をドラッグ＆ドロップ、またはクリックして選択</div></div>';
+    h+='<div class="gb-block">音波スケーラーの基礎理論から臨床での使い分けまで、症例を交えて解説します。<br>日時：7月20日(日) 13:00〜16:00／オンライン（Zoom）／定員50名</div>';
+    h+='<div class="gb-block" style="color:var(--text-3)">＋ ブロックを追加（画像・見出し・段落 など）</div>';
   }
-  h+='<button class="fbtn">公開する</button> <button class="fbtn sub">下書き保存</button>';
-  h+='</div></div>';
   return h;
 }
 
-function adReport(){
-  var h='<div class="am-h">再生レポート</div><div class="am-sub">Bunny Stream の分析。動画ごとの総再生回数と概算ユニーク再生を確認できます。</div>';
-  h+='<div class="acards">'+acard("総再生数","1,034 回")+acard("概算ユニーク再生","約 610")+acard("平均視聴完了率","68%")+'</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>動画別の再生数</span></div><div class="ap-body">';
+/* WooCommerce（決済ON時のみ・注文一覧） */
+function adWoo(){
+  var h=pbrand("WooCommerce","#7f54b3","決済・注文");
+  h+='<div class="ptabs"><span class="on">注文</span><span>商品</span><span>レポート</span><span>設定</span></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>注文一覧</span></div>';
+  h+='<table class="atable"><thead><tr><th>注文</th><th>お客様</th><th>セミナー</th><th>支払い</th><th>合計</th></tr></thead><tbody>'+
+     '<tr><td>#1042</td><td>田中 花子</td><td>歯周治療 第1回</td><td><span class="tag ok">支払い済み</span></td><td>¥5,500</td></tr>'+
+     '<tr><td>#1043</td><td>佐藤 美咲</td><td>歯周治療 第1回</td><td><span class="tag wait">保留中</span></td><td>¥5,500</td></tr>'+
+     '<tr><td>#1044</td><td>鈴木 由美</td><td>スケーリング実技</td><td><span class="tag ok">支払い済み</span></td><td>¥5,500</td></tr></tbody></table></div>';
+  h+='<div class="apanel"><div class="ap-body"><div class="adm-note">カード決済（PAY.JP 等）の入金は自動で「支払い済み」になり、受講者が自動でコースに登録されます。</div></div></div>';
+  return h;
+}
+
+/* MailPoet（メール配信プラグイン） */
+function adMail(){
+  var X=state.moushikomi;
+  var h=pbrand("MailPoet","#2b3a8f","メール配信");
+  h+='<div class="ptabs"><span class="on">メール</span><span>リスト</span><span>フォーム</span><span>設定</span></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>新規メールを作成</span><span class="ap-act">＋ 作成</span></div><div class="ap-body">';
+  h+='<div class="frow"><label>送信先リスト</label><select class="fsel">'+(X?'<option>7/20 セミナーの参加者（42名）</option><option>未入金の方</option>':'')+'<option>登録会員 全員（128名）</option></select></div>';
+  h+='<div class="frow"><label>件名</label><input class="finput" value="【ご案内】次回セミナーのお知らせ"></div>';
+  h+='<div class="frow"><label>本文</label><textarea class="ftext">いつもありがとうございます。次回セミナーのご案内です。</textarea></div>';
+  h+='<button class="fbtn">送信する</button></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>送信履歴</span></div><table class="atable"><thead><tr><th>件名</th><th>送信先</th><th>状態</th></tr></thead><tbody><tr><td>6月セミナーのお礼</td><td>全会員</td><td><span class="tag ok">送信済み</span></td></tr></tbody></table></div>';
+  return h;
+}
+
+/* Bunny Stream（WordPress外の管理画面） */
+function adBunny(){
+  var h=pbrand("Bunny Stream","#ff7a00","動画ホスティング（外部）");
+  h+='<div class="ext-note">⚠ これは WordPress の外にある「Bunny.net」の管理画面です。動画のアップロード・保護設定・再生数の確認はこちらで行います（WP内への埋め込み表示も可能）。</div>';
+  h+='<div class="acards">'+acard("総再生数","1,034 回")+acard("概算ユニーク","約 610")+acard("配信量","24 GB")+'</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>動画ライブラリ</span><span class="ap-act">＋ アップロード</span></div><div class="ap-body">';
   [["基礎から学ぶ歯周治療 第1回",512,100],["スケーリング実技デモ",389,76],["症例検討カンファレンス",133,26]].forEach(function(v){
     h+='<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12.5px"><span>'+v[0]+'</span><span class="vl-t">'+v[1]+' 回</span></div><div class="bar"><i style="width:'+v[2]+'%"></i></div></div>';
   });
-  h+='<div class="adm-note" style="margin-top:4px">※ ユニーク再生はセッション基準の概算です（会員ごとの厳密な集計は行いません）。</div>';
-  h+='</div></div>';
+  h+='<div class="adm-note">※ ユニーク再生はセッション基準の概算です。</div></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>🔒 セキュリティ設定</span></div><div class="ap-body"><div class="adm-note">'+
+     (state.spread==="mid"?'Token Authentication：<b>ON（署名URL）</b>　／　Allowed Referrers：<b>先生のサイトのみ</b><br>→ サイト外に貼っても再生できません。':'Token Authentication：OFF　／　Allowed Referrers：未設定<br>→ 保護は WordPress ログインのみ（URLの持ち出しは防げません）。')+
+     '</div></div></div>';
   return h;
 }
 
 function adSettings(){
-  var h='<div class="am-h">設定</div><div class="am-sub">動画の保護レベルや視聴期限などの基本設定です。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>🔒 拡散防止レベル</span></div><div class="ap-body"><div class="adm-note">'+
-     (state.spread==="mid"?'● <b>中：サイト外では再生不可</b>（ドメイン制限＋署名URL）<br>○ 弱：ログイン必須のみ':'○ 中：サイト外では再生不可（ドメイン制限＋署名URL）<br>● <b>弱：ログイン必須のみ</b>')+
+  var h='<div class="am-h">設定</div><div class="am-sub">WordPress と各プラグインの基本設定です。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>⏱ 視聴期限（Tutor LMS）</span></div><div class="ap-body"><div class="adm-note">'+
+     (state.expiry?'● <b>コースごとに「公開から○日」で自動終了</b><br>○ 期限なし':'○ コースごとに「公開から○日」で自動終了<br>● <b>期限なし</b>')+
      '</div></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>⏱ 視聴期限</span></div><div class="ap-body"><div class="adm-note">'+
-     (state.expiry?'● <b>動画ごとに「公開から○日」で自動終了</b><br>○ 期限なし':'○ 動画ごとに「公開から○日」で自動終了<br>● <b>期限なし（いつでも視聴可）</b>')+
+  h+='<div class="apanel"><div class="ap-h"><span>🔒 拡散防止（Bunny）</span></div><div class="ap-body"><div class="adm-note">'+
+     (state.spread==="mid"?'● <b>中：署名URL＋ドメイン制限</b><br>○ 弱：ログインのみ':'○ 中：署名URL＋ドメイン制限<br>● <b>弱：ログインのみ</b>')+
      '</div></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>🎬 動画ホスティング</span></div><div class="ap-body"><div class="adm-note">Bunny Stream と連携済み。動画をアップロードすると自動で保護され、会員サイト内のプレーヤーで配信されます。</div></div></div>';
   return h;
 }
 
@@ -644,7 +690,7 @@ function renderPreview(){
   var url;
   if(state.preview==="member"){var mp=memberPages();if(!mp.some(function(p){return p.k===state.mpage;}))state.mpage=mp[0].k;url=findUrl(mp,state.mpage);}
   else{var ap=adminPages();if(!ap.some(function(p){return p.k===state.apage;}))state.apage=ap[0].k;url=findUrl(ap,state.apage);}
-  document.getElementById("pv-url").textContent="https://（先生のサイト）"+url;
+  document.getElementById("pv-url").textContent=(url.indexOf("http")===0?url:"https://（先生のサイト）"+url);
   document.getElementById("pv-screen").innerHTML=state.preview==="member"?memberView():adminView();
   // 上位セグメント（受講者／管理者）
   var seg=document.getElementById("pv-seg");
