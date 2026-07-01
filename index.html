@@ -17,7 +17,13 @@
   }
   *{box-sizing:border-box;}
   body{margin:0; background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.7; -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:760px; margin:0 auto; padding:32px 20px 80px;}
+  .wrap{max-width:1180px; margin:0 auto; padding:32px 24px 80px;}
+  .top-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; margin-bottom:8px;}
+  .col{min-width:0;}
+  .top-grid .cover{margin-bottom:22px;}
+  .top-grid #banner .banner{margin-top:0;}
+  .rc-title{font-size:16px; font-weight:600; margin:0 0 12px;}
+  @media (max-width:920px){ .top-grid{grid-template-columns:1fr; gap:0;} }
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   h1{font-size:24px; font-weight:600; margin:0 0 4px;}
   .sub{font-size:14px; color:var(--text-2); margin:0 0 28px;}
@@ -333,6 +339,8 @@
 <div class="wrap">
   <span class="sr-only">セミナー会員サイトの仕様コンフィギュレーター。6つのスイッチを切り替えると構成・要件充足・実装・費用が連動します。</span>
 
+  <div class="top-grid">
+  <div class="col col-left">
   <div class="cover">
     <span class="eyebrow">石原先生へ — セミナー動画 会員サイトのご提案</span>
     <h1>受講された方だけが、動画を見られる仕組み</h1>
@@ -358,7 +366,10 @@
     <p class="note">上から順に切り替えてください（決済は申込ON、申込は案内ONが前提です）。</p>
     <div id="toggles"></div>
   </div>
+  </div>
 
+  <div class="col col-right">
+  <div class="rc-title">現在の構成</div>
   <div id="banner"></div>
 
   <div class="metrics">
@@ -371,6 +382,8 @@
 
   <h3>要件の充足状況</h3>
   <div id="reqs" class="reqs"></div>
+  </div>
+  </div>
 
   <div class="pv-head">
     <h3>完成イメージ（画面プレビュー）</h3>
