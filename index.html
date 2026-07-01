@@ -170,6 +170,43 @@
   .fe .annai-side .as-d{font-size:13px; color:#6f636a; line-height:1.95; margin-bottom:18px;}
   .fe .kv{font-size:12.5px; color:#6f636a; line-height:2.1; background:var(--fe-surf); border-radius:12px; padding:14px 18px; box-shadow:0 3px 12px rgba(150,110,120,.08);}
   .fe .kv b{color:var(--p-d); font-weight:600;}
+  /* ログイン前（ゲスト）ページ */
+  .fe .fe-demo{display:flex; align-items:center; gap:10px; padding:9px 16px; background:#f3e7ea; font-size:11px; color:var(--p-d); flex-wrap:wrap;}
+  .fe .fe-demo-l{font-weight:600; letter-spacing:.04em;}
+  .fe .seg-sm2{display:inline-flex; background:#fff; border-radius:20px; padding:3px;}
+  .fe .seg-sm2 button{border:none; background:transparent; font-family:inherit; font-size:11.5px; color:var(--fe-tx2); padding:5px 14px; border-radius:16px; cursor:pointer;}
+  .fe .seg-sm2 button.on{background:linear-gradient(135deg,var(--p),var(--lav)); color:#fff; font-weight:600;}
+  .fe .fe-authbtns{display:flex; gap:8px;}
+  .fe .fe-login{background:transparent; border:1px solid var(--p); color:var(--p-d); border-radius:20px; padding:6px 16px; font-size:12px; font-family:inherit; cursor:pointer;}
+  .fe .fe-reg{background:linear-gradient(135deg,var(--p),var(--lav)); border:none; color:#fff; border-radius:20px; padding:7px 17px; font-size:12px; font-family:inherit; cursor:pointer; box-shadow:0 4px 12px rgba(180,110,135,.28);}
+  .fe .lp-hero{position:relative; overflow:hidden; background:linear-gradient(150deg,#f7e4e8,#efe3f0 55%,#e4edea); padding:52px 28px 46px; text-align:center;}
+  .fe .lp-hero::after{content:""; position:absolute; left:-50px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.3);}
+  .fe .lp-hero::before{content:""; position:absolute; right:-30px; bottom:-70px; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,.24);}
+  .fe .lp-ey{font-size:10px; letter-spacing:.32em; color:var(--p-d); margin:0 0 14px; position:relative;}
+  .fe .lp-hero h1{font-family:var(--serif); font-size:28px; line-height:1.55; margin:0 0 15px; color:#463b42; position:relative;}
+  .fe .lp-hero p{font-size:13px; color:#6f636a; line-height:1.9; max-width:440px; margin:0 auto 24px; position:relative;}
+  .fe .lp-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; position:relative;}
+  .fe .lp-cta .m-btn.ghost{background:#fff; color:var(--p-d); box-shadow:0 4px 12px rgba(150,110,120,.15);}
+  .fe .lp-features{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:14px; padding:30px 28px;}
+  .fe .feat{background:#fff; border-radius:14px; padding:22px 18px; text-align:center; box-shadow:0 5px 18px rgba(150,110,120,.09);}
+  .fe .feat .fic{font-size:25px;}
+  .fe .feat .ft{font-family:var(--serif); font-size:14px; font-weight:600; margin:11px 0 6px;}
+  .fe .feat .fd{font-size:11.5px; color:var(--fe-tx2); line-height:1.7;}
+  .fe .lp-band{margin:0 28px 30px; background:linear-gradient(135deg,var(--p),var(--lav)); border-radius:16px; padding:30px 24px; text-align:center; color:#fff;}
+  .fe .lp-band h3{font-family:var(--serif); font-size:19px; margin:0 0 8px;}
+  .fe .lp-band p{font-size:12px; opacity:.95; margin:0 0 18px; line-height:1.8;}
+  .fe .lp-band .m-btn{background:#fff; color:var(--p-d); box-shadow:0 6px 18px rgba(90,60,70,.2);}
+  .fe .authwrap{padding:38px 28px; display:flex; justify-content:center;}
+  .fe .authbox{width:100%; max-width:344px; background:#fff; border-radius:18px; padding:30px 28px; box-shadow:0 10px 30px rgba(150,110,120,.13);}
+  .fe .authbox h3{font-family:var(--serif); font-size:20px; text-align:center; margin:0 0 7px;}
+  .fe .authbox .asub{font-size:11.5px; color:var(--fe-tx2); text-align:center; margin:0 0 20px; line-height:1.7;}
+  .fe .afree{background:#eaf4ee; color:#3f7a5c; font-size:11.5px; border-radius:9px; padding:9px 12px; text-align:center; margin-bottom:20px;}
+  .fe .afield{margin-bottom:14px;}
+  .fe .afield label{display:block; font-size:11.5px; color:var(--fe-tx2); margin-bottom:6px;}
+  .fe .afield input{width:100%; border:1px solid #ecdfe0; border-radius:10px; padding:11px 13px; font-size:12.5px; font-family:inherit; color:var(--fe-tx); background:#fdfafa;}
+  .fe .abtn{width:100%; background:linear-gradient(135deg,var(--p),var(--lav)); color:#fff; border:none; border-radius:24px; padding:13px; font-size:13.5px; font-family:inherit; cursor:pointer; margin-top:6px; box-shadow:0 6px 18px rgba(180,110,135,.3);}
+  .fe .aalt{text-align:center; font-size:11.5px; color:var(--fe-tx2); margin-top:18px;}
+  .fe .aalt a{color:var(--p-d); cursor:pointer; font-weight:600;}
   /* 管理側の案内作成で使う seg-sm（中立スタイル） */
   .seg-sm{display:inline-flex; border:0.5px solid var(--border-strong); border-radius:6px; overflow:hidden; margin-bottom:14px;}
   .seg-sm button{border:none; background:transparent; font-family:inherit; font-size:12px; color:var(--text-2); padding:5px 12px; cursor:pointer;}
@@ -311,7 +348,7 @@
 </div>
 
 <script>
-var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",mpage:"mypage",apage:"ops",annaiType:"flyer"};
+var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",feAuth:"guest",gpage:"top",mpage:"mypage",apage:"ops",annaiType:"flyer"};
 
 var TOGGLES=[
   {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
@@ -467,6 +504,42 @@ function memberPages(){
   if(state.annaai) p.push({k:"annai",label:"セミナー案内",url:"/seminar/next"});
   return p;
 }
+function guestPages(){
+  return [{k:"top",label:"トップ",url:"/"},{k:"register",label:"会員登録",url:"/register"},{k:"login",label:"ログイン",url:"/login"}];
+}
+function feat(ic,t,d){return '<div class="feat"><div class="fic">'+ic+'</div><div class="ft">'+t+'</div><div class="fd">'+d+'</div></div>';}
+function afield(label,ph,type){return '<div class="afield"><label>'+label+'</label><input type="'+(type||"text")+'" placeholder="'+ph+'"></div>';}
+
+function gTop(){
+  var h='<div class="lp-hero"><p class="lp-ey">DENTAL HYGIENE SEMINAR</p>'+
+        '<h1>石原先生のセミナーを、<br>いつでも動画で。</h1>'+
+        '<p>受講された歯科衛生士のための会員サイトです。学んだ内容を、期間内なら何度でも動画で振り返れます。会員登録は無料です。</p>'+
+        '<div class="lp-cta"><button class="m-btn" data-gtab="register">無料で会員登録</button>'+
+        '<button class="m-btn ghost" data-gtab="login">ログイン</button></div></div>';
+  h+='<div class="lp-features">'+
+     feat("🎬","受講した動画を何度でも","参加したセミナーの動画を、視聴期間内はいつでも見返せます。")+
+     feat("📱","スマホでも快適に","移動中やすきま時間に、スマートフォンからでもご視聴いただけます。")+
+     feat("🔒","安心のセキュリティ","受講された方だけが視聴でき、動画が外部に流出しません。")+'</div>';
+  h+='<div class="lp-band"><h3>まずは無料で会員登録</h3>'+
+     '<p>登録は無料。受講されたセミナーの動画が、あなたのマイページに並びます。</p>'+
+     '<button class="m-btn" data-gtab="register">無料で会員登録する</button></div>';
+  return h;
+}
+function gRegister(){
+  return '<div class="authwrap"><div class="authbox"><h3>会員登録</h3>'+
+    '<p class="asub">受講したセミナーの動画を視聴するためのアカウントを作成します。</p>'+
+    '<div class="afree">✓ 会員登録・年会費は無料です</div>'+
+    afield("お名前","山田 花子")+afield("メールアドレス","hanako@example.com")+afield("パスワード","••••••••","password")+
+    '<button class="abtn" data-feauth="member">無料で登録する</button>'+
+    '<div class="aalt">すでに登録済みの方は <a data-gtab="login">ログイン</a></div></div></div>';
+}
+function gLogin(){
+  return '<div class="authwrap"><div class="authbox"><h3>ログイン</h3>'+
+    '<p class="asub">会員の方はこちらからログインしてください。</p>'+
+    afield("メールアドレス","hanako@example.com")+afield("パスワード","••••••••","password")+
+    '<button class="abtn" data-feauth="member">ログイン</button>'+
+    '<div class="aalt">はじめての方は <a data-gtab="register">会員登録（無料）</a></div></div></div>';
+}
 function adminPages(){
   var X=state.moushikomi;
   var p=[{k:"ops",ic:"✨",label:"かんたん運用",url:"/wp-admin/admin.php?page=ops"},
@@ -481,17 +554,37 @@ function adminPages(){
 }
 
 function memberView(){
-  var pages=memberPages();
-  if(!pages.some(function(p){return p.k===state.mpage;})) state.mpage=pages[0].k;
-  var h='<div class="fe"><header class="fe-head"><div class="fe-logo">石原デンタルセミナー<span>ISHIHARA DENTAL SEMINAR</span></div>'+
-        '<div class="fe-user">田中 花子 様　・　ログアウト</div></header>';
-  h+='<nav class="fe-nav">';
-  pages.forEach(function(p){h+='<button class="mtab'+(p.k===state.mpage?" on":"")+'" data-mtab="'+p.k+'">'+p.label+'</button>';});
-  h+='</nav><div class="fe-body">';
-  if(state.mpage==="mypage") h+=mpMypage();
-  else if(state.mpage==="watch") h+=mpWatch();
-  else if(state.mpage==="annai") h+=mpAnnai();
-  h+='</div></div>';
+  var h='<div class="fe">';
+  h+='<div class="fe-demo"><span class="fe-demo-l">プレビュー表示</span>'+
+     '<div class="seg-sm2"><button data-feauth="guest" class="'+(state.feAuth==="guest"?"on":"")+'">ログイン前のサイト</button>'+
+     '<button data-feauth="member" class="'+(state.feAuth==="member"?"on":"")+'">ログイン後（会員ページ）</button></div></div>';
+  if(state.feAuth==="guest"){
+    var gp=guestPages();
+    if(!gp.some(function(p){return p.k===state.gpage;})) state.gpage=gp[0].k;
+    h+='<header class="fe-head"><div class="fe-logo">石原デンタルセミナー<span>ISHIHARA DENTAL SEMINAR</span></div>'+
+       '<div class="fe-authbtns"><button class="fe-login" data-gtab="login">ログイン</button>'+
+       '<button class="fe-reg" data-gtab="register">新規登録</button></div></header>';
+    h+='<nav class="fe-nav">';
+    gp.forEach(function(p){h+='<button class="mtab'+(p.k===state.gpage?" on":"")+'" data-gtab="'+p.k+'">'+p.label+'</button>';});
+    h+='</nav><div class="fe-body">';
+    if(state.gpage==="top") h+=gTop();
+    else if(state.gpage==="register") h+=gRegister();
+    else if(state.gpage==="login") h+=gLogin();
+    h+='</div>';
+  } else {
+    var pages=memberPages();
+    if(!pages.some(function(p){return p.k===state.mpage;})) state.mpage=pages[0].k;
+    h+='<header class="fe-head"><div class="fe-logo">石原デンタルセミナー<span>ISHIHARA DENTAL SEMINAR</span></div>'+
+       '<div class="fe-user">田中 花子 様　・　ログアウト</div></header>';
+    h+='<nav class="fe-nav">';
+    pages.forEach(function(p){h+='<button class="mtab'+(p.k===state.mpage?" on":"")+'" data-mtab="'+p.k+'">'+p.label+'</button>';});
+    h+='</nav><div class="fe-body">';
+    if(state.mpage==="mypage") h+=mpMypage();
+    else if(state.mpage==="watch") h+=mpWatch();
+    else if(state.mpage==="annai") h+=mpAnnai();
+    h+='</div>';
+  }
+  h+='</div>';
   return h;
 }
 
@@ -688,7 +781,10 @@ function adSettings(){
 
 function renderPreview(){
   var url;
-  if(state.preview==="member"){var mp=memberPages();if(!mp.some(function(p){return p.k===state.mpage;}))state.mpage=mp[0].k;url=findUrl(mp,state.mpage);}
+  if(state.preview==="member"){
+    if(state.feAuth==="guest"){var gp=guestPages();if(!gp.some(function(p){return p.k===state.gpage;}))state.gpage=gp[0].k;url=findUrl(gp,state.gpage);}
+    else{var mp=memberPages();if(!mp.some(function(p){return p.k===state.mpage;}))state.mpage=mp[0].k;url=findUrl(mp,state.mpage);}
+  }
   else{var ap=adminPages();if(!ap.some(function(p){return p.k===state.apage;}))state.apage=ap[0].k;url=findUrl(ap,state.apage);}
   document.getElementById("pv-url").textContent=(url.indexOf("http")===0?url:"https://（先生のサイト）"+url);
   document.getElementById("pv-screen").innerHTML=state.preview==="member"?memberView():adminView();
@@ -701,6 +797,8 @@ function renderPreview(){
   // ページ切替（タブ・サイドバー・動画クリック・案内形式）
   var scr=document.getElementById("pv-screen");
   Array.prototype.forEach.call(scr.querySelectorAll("[data-mtab]"),function(el){el.onclick=function(){state.mpage=el.getAttribute("data-mtab");renderAll();};});
+  Array.prototype.forEach.call(scr.querySelectorAll("[data-gtab]"),function(el){el.onclick=function(){state.gpage=el.getAttribute("data-gtab");renderAll();};});
+  Array.prototype.forEach.call(scr.querySelectorAll("[data-feauth]"),function(el){el.onclick=function(){var v=el.getAttribute("data-feauth");state.feAuth=v;if(v==="member")state.mpage="mypage";renderAll();};});
   Array.prototype.forEach.call(scr.querySelectorAll("[data-apage]"),function(el){el.onclick=function(){state.apage=el.getAttribute("data-apage");renderAll();};});
   Array.prototype.forEach.call(scr.querySelectorAll("[data-annai]"),function(el){el.onclick=function(){state.annaiType=el.getAttribute("data-annai");renderAll();};});
 }
