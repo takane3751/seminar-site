@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>セミナー会員サイト 仕様コンフィギュレーター</title>
+<title>セミナー動画 会員システム 仕様のご確認</title>
 <style>
   :root{
     --bg:#f7f6f2; --surface:#ffffff; --surface-1:#f1efe8;
@@ -18,71 +18,14 @@
   *{box-sizing:border-box;}
   body{margin:0; background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.7; -webkit-font-smoothing:antialiased;}
   .wrap{max-width:1180px; margin:0 auto; padding:32px 24px 80px;}
-  .top-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; margin-bottom:8px;}
-  .col{min-width:0;}
-  .top-grid .cover{margin-bottom:22px;}
-  .top-grid #banner .banner{margin-top:0;}
-  .rc-title{font-size:16px; font-weight:600; margin:0 0 12px;}
-  @media (max-width:920px){ .top-grid{grid-template-columns:1fr; gap:0;} }
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
-  h1{font-size:24px; font-weight:600; margin:0 0 4px;}
-  .sub{font-size:14px; color:var(--text-2); margin:0 0 28px;}
   h3{font-size:16px; font-weight:600; margin:28px 0 10px;}
-  .panel{background:var(--surface-1); border-radius:12px; padding:20px;}
-  .panel-head{display:flex; align-items:center; gap:8px; margin-bottom:2px;}
-  .panel-head .ic{font-size:20px; color:var(--accent);}
-  .panel h2{margin:0; font-size:18px; font-weight:600;}
-  .panel .note{margin:0 0 14px; font-size:13px; color:var(--text-2);}
-
-  .trow{display:flex; align-items:center; gap:10px; padding:11px 6px; border-bottom:0.5px solid var(--border);}
-  .trow:last-child{border-bottom:none;}
-  .trow .tic{font-size:20px; color:var(--text-2); width:22px; text-align:center; flex-shrink:0;}
-  .trow .tlabel{flex:1; min-width:0;}
-  .trow .tlabel .tt{font-size:14px; font-weight:500;}
-  .trow .tlabel .th{font-size:12px; color:var(--text-3);}
-  .trow.disabled{opacity:.42;}
-
-  .sw{flex-shrink:0; width:46px; height:26px; border-radius:13px; border:none; background:var(--border-strong); position:relative; cursor:pointer; transition:background .15s; padding:0;}
-  .sw.on{background:var(--accent);}
-  .sw .knob{position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; transition:left .15s;}
-  .sw.on .knob{left:23px;}
-  .sw:disabled{cursor:not-allowed;}
 
   .seg{flex-shrink:0; display:flex; border:0.5px solid var(--border-strong); border-radius:var(--radius); overflow:hidden;}
   .seg button{border:none; padding:6px 13px; font-size:13px; cursor:pointer; background:transparent; color:var(--text-2); font-family:inherit;}
   .seg button.active{background:var(--accent); color:#fff;}
 
-  .banner{border:2px solid var(--accent); border-radius:12px; padding:13px 16px; background:var(--surface); margin:16px 0;}
-  .banner .pill{display:inline-block; font-size:12px; padding:3px 10px; border-radius:var(--radius); background:var(--accent-bg); color:var(--accent); margin-bottom:6px;}
-  .banner .bn{font-size:18px; font-weight:600;}
-  .banner .bd{font-size:13px; color:var(--text-2); margin-top:2px;}
-
-  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:4px;}
-  .metric{background:var(--surface-1); border-radius:var(--radius); padding:14px 16px;}
-  .metric .ml{font-size:13px; color:var(--text-3);}
-  .metric .mv{font-size:21px; font-weight:600; margin-top:2px;}
-
-  .rowcard{display:flex; align-items:center; gap:10px; padding:10px 14px; border:0.5px solid var(--border); border-radius:var(--radius); background:var(--surface);}
-  .rowcard .rn{font-size:13px; font-weight:500; width:110px; flex-shrink:0;}
-  .rowcard .rd{flex:1; font-size:13px; color:var(--text-2);}
-  .rowcard .rp{font-size:12px; color:var(--text-3); white-space:nowrap;}
-  .stack,.reqs{display:flex; flex-direction:column; gap:6px;}
-
-  .req{display:flex; align-items:flex-start; gap:10px; padding:9px 14px; border:0.5px solid var(--border); border-radius:var(--radius); background:var(--surface);}
-  .req .ri{font-size:18px; margin-top:1px; flex-shrink:0;}
-  .req .rb{flex:1; min-width:0;}
-  .req .rt{font-size:14px;}
-  .req .rh{font-size:12px; color:var(--text-3);}
-  .req .rs{font-size:11px; white-space:nowrap; margin-top:2px;}
-  .req.dim{opacity:.5;}
-
-  .ic-check::before{content:"✓"; color:var(--success); font-weight:700;}
-  .ic-dash::before{content:"◐"; color:var(--warning);}
-  .ic-tool::before{content:"✚"; color:var(--warning);}
-  .ic-minus::before{content:"–"; color:var(--text-3);}
-  .ic-lock::before{content:"🔒"; filter:grayscale(1);}
-
-  .cover{background:var(--surface); border:0.5px solid var(--border-strong); border-radius:12px; padding:30px 26px; margin-bottom:26px;}
+  .cover{background:var(--surface); border:0.5px solid var(--border-strong); border-radius:12px; padding:30px 26px; margin-bottom:22px;}
   .cover .eyebrow{display:inline-block; font-size:12px; letter-spacing:.04em; color:var(--accent); background:var(--accent-bg); padding:4px 11px; border-radius:var(--radius); margin-bottom:14px;}
   .cover h1{font-size:26px; line-height:1.45; margin:0 0 12px;}
   .cover .lead{font-size:15px; color:var(--text-2); margin:0 0 20px;}
@@ -93,23 +36,32 @@
   .points .pt b{color:var(--text); font-weight:600;}
   .howto{background:var(--surface-1); border-radius:var(--radius); padding:16px 18px;}
   .howto .ht-title{font-size:14px; font-weight:600; margin-bottom:8px;}
-  .howto ol{margin:0; padding-left:20px; font-size:13.5px; color:var(--text-2); line-height:1.95;}
-  .howto ol b{color:var(--text); font-weight:600;}
-
+  .howto p{margin:0; font-size:13.5px; color:var(--text-2); line-height:1.9;}
+  .howto b{color:var(--text); font-weight:600;}
   .cover-note{font-size:12px; color:var(--text-3); margin:16px 0 0; line-height:1.7;}
 
+  /* 確定した仕組み */
+  .spec-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:4px 0 8px;}
+  .spec-card{background:var(--surface); border:0.5px solid var(--border); border-radius:12px; padding:18px 18px;}
+  .spec-card .sc-ic{font-size:22px;}
+  .spec-card .sc-t{font-size:14px; font-weight:600; margin:9px 0 5px;}
+  .spec-card .sc-d{font-size:12.5px; color:var(--text-2); line-height:1.75;}
+  .spec-card .sc-d b{color:var(--text); font-weight:600;}
+
   /* ===== 画面プレビュー ===== */
-  .pv-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:30px 0 6px;}
+  .pv-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:34px 0 6px;}
   .pv-head h3{margin:0;}
   .pv-note{font-size:13px; color:var(--text-2); margin:0 0 12px;}
+  .pv-note b{color:var(--text); font-weight:600;}
   .browser{border:0.5px solid var(--border-strong); border-radius:10px; overflow:hidden; background:var(--surface); box-shadow:0 1px 4px rgba(0,0,0,.06);}
   .bbar{display:flex; align-items:center; gap:7px; padding:9px 12px; background:var(--surface-1); border-bottom:0.5px solid var(--border);}
   .bbar .dot{width:10px; height:10px; border-radius:50%; background:var(--border-strong); flex-shrink:0;}
   .bbar .url{flex:1; margin-left:8px; font-size:11.5px; color:var(--text-3); background:var(--surface); border:0.5px solid var(--border); border-radius:20px; padding:3px 12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
   .screen{min-height:300px;}
   .pv-cap{font-size:11.5px; color:var(--text-3); margin:9px 2px 0; line-height:1.6;}
+  .pv-ctrls{display:flex; gap:8px; flex-wrap:wrap;}
 
-  /* ===== 受講者ビュー（表サイト・ペールカラー） ===== */
+  /* ===== 受講者ビュー（ペールカラー） ===== */
   .fe{
     --p:#c98a99; --p-d:#ab6879; --lav:#b6a3cc; --sage:#9db8ad;
     --fe-bg:#fbf6f4; --fe-surf:#ffffff; --fe-tx:#544a51; --fe-tx2:#9a8d94; --fe-line:#f1e7e5;
@@ -149,8 +101,6 @@
   .fe .vmeta.vlimit{color:var(--p-d);}
   .fe .mb-foot{font-size:11.5px; color:var(--fe-tx2); margin:22px 28px 0; padding-top:16px; border-top:1px solid var(--fe-line); line-height:1.85;}
   .fe .back{font-size:12px; color:var(--p-d); margin:0 0 15px; cursor:pointer; display:inline-block;}
-  .fe .m-btn{background:linear-gradient(135deg,var(--p),var(--lav)); color:#fff; border:none; border-radius:26px; padding:12px 32px; font-size:13.5px; font-family:inherit; cursor:pointer; box-shadow:0 6px 18px rgba(180,110,135,.3); letter-spacing:.04em;}
-  .fe .m-pay{font-size:11.5px; color:var(--fe-tx2); margin-top:11px;}
   /* 動画視聴ページ */
   .fe .player{aspect-ratio:16/9; background:linear-gradient(150deg,#3f333a,#5d4a53); border-radius:16px; display:flex; align-items:center; justify-content:center; position:relative; margin-bottom:18px; box-shadow:0 12px 32px rgba(90,60,70,.24);}
   .fe .player .pbtn{width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.94); display:flex; align-items:center; justify-content:center; color:var(--p-d); font-size:22px; padding-left:4px;}
@@ -161,66 +111,26 @@
   .fe .wmeta{font-size:12px; color:var(--fe-tx2); margin-bottom:16px;}
   .fe .wmeta .vlimit{color:var(--p-d);}
   .fe .wdesc{font-size:13px; color:#6f636a; line-height:1.95; background:var(--fe-surf); border-radius:14px; padding:18px 20px; box-shadow:0 4px 16px rgba(150,110,120,.08);}
-  /* セミナー案内ページ（テキスト/フライヤー） */
-  .fe .seg-sm{display:inline-flex; background:#f3e7ea; border-radius:24px; padding:3px; margin-bottom:18px; border:none;}
-  .fe .seg-sm button{border:none; background:transparent; font-family:inherit; font-size:12px; color:var(--fe-tx2); padding:7px 16px; cursor:pointer; border-radius:20px;}
-  .fe .seg-sm button.on{background:#fff; color:var(--p-d); font-weight:600; box-shadow:0 2px 7px rgba(150,110,120,.16);}
-  .fe .annai-wrap{display:flex; gap:24px; flex-wrap:wrap;}
-  .fe .flyer{width:240px; max-width:100%; aspect-ratio:3/4; border-radius:16px; background:linear-gradient(160deg,#d8a7b8,#b6a3cc 58%,#9db8ad); color:#fff; padding:24px 22px; display:flex; flex-direction:column; box-shadow:0 14px 32px rgba(150,110,140,.32); flex-shrink:0;}
-  .fe .flyer .fk{font-size:10px; letter-spacing:.26em; opacity:.9;}
-  .fe .flyer .fttl{font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.55; margin-top:14px;}
-  .fe .flyer .fmid{margin-top:auto; font-size:12.5px; line-height:2; opacity:.96;}
-  .fe .flyer .fimg{margin-top:14px; font-size:10px; opacity:.72; text-align:center; letter-spacing:.04em;}
-  .fe .annai-side{flex:1; min-width:220px;}
-  .fe .annai-side .as-ttl{font-family:var(--serif); font-size:19px; font-weight:600; margin:0 0 10px; line-height:1.5;}
-  .fe .annai-side .as-d{font-size:13px; color:#6f636a; line-height:1.95; margin-bottom:18px;}
-  .fe .kv{font-size:12.5px; color:#6f636a; line-height:2.1; background:var(--fe-surf); border-radius:12px; padding:14px 18px; box-shadow:0 3px 12px rgba(150,110,120,.08);}
-  .fe .kv b{color:var(--p-d); font-weight:600;}
-  /* ログイン前（ゲスト）ページ */
-  .fe .fe-demo{display:flex; align-items:center; gap:10px; padding:9px 16px; background:#f3e7ea; font-size:11px; color:var(--p-d); flex-wrap:wrap;}
-  .fe .fe-demo-l{font-weight:600; letter-spacing:.04em;}
-  .fe .seg-sm2{display:inline-flex; background:#fff; border-radius:20px; padding:3px;}
-  .fe .seg-sm2 button{border:none; background:transparent; font-family:inherit; font-size:11.5px; color:var(--fe-tx2); padding:5px 14px; border-radius:16px; cursor:pointer;}
-  .fe .seg-sm2 button.on{background:linear-gradient(135deg,var(--p),var(--lav)); color:#fff; font-weight:600;}
-  .fe .fe-authbtns{display:flex; gap:8px;}
-  .fe .fe-login{background:transparent; border:1px solid var(--p); color:var(--p-d); border-radius:20px; padding:6px 16px; font-size:12px; font-family:inherit; cursor:pointer;}
-  .fe .fe-reg{background:linear-gradient(135deg,var(--p),var(--lav)); border:none; color:#fff; border-radius:20px; padding:7px 17px; font-size:12px; font-family:inherit; cursor:pointer; box-shadow:0 4px 12px rgba(180,110,135,.28);}
-  .fe .lp-hero{position:relative; overflow:hidden; background:linear-gradient(150deg,#f7e4e8,#efe3f0 55%,#e4edea); padding:52px 28px 46px; text-align:center;}
-  .fe .lp-hero::after{content:""; position:absolute; left:-50px; top:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.3);}
-  .fe .lp-hero::before{content:""; position:absolute; right:-30px; bottom:-70px; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,.24);}
-  .fe .lp-ey{font-size:10px; letter-spacing:.32em; color:var(--p-d); margin:0 0 14px; position:relative;}
-  .fe .lp-hero h1{font-family:var(--serif); font-size:28px; line-height:1.55; margin:0 0 15px; color:#463b42; position:relative;}
-  .fe .lp-hero p{font-size:13px; color:#6f636a; line-height:1.9; max-width:440px; margin:0 auto 24px; position:relative;}
-  .fe .lp-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; position:relative;}
-  .fe .lp-cta .m-btn.ghost{background:#fff; color:var(--p-d); box-shadow:0 4px 12px rgba(150,110,120,.15);}
-  .fe .lp-features{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:14px; padding:30px 28px;}
-  .fe .feat{background:#fff; border-radius:14px; padding:22px 18px; text-align:center; box-shadow:0 5px 18px rgba(150,110,120,.09);}
-  .fe .feat .fic{font-size:25px;}
-  .fe .feat .ft{font-family:var(--serif); font-size:14px; font-weight:600; margin:11px 0 6px;}
-  .fe .feat .fd{font-size:11.5px; color:var(--fe-tx2); line-height:1.7;}
-  .fe .lp-band{margin:0 28px 30px; background:linear-gradient(135deg,var(--p),var(--lav)); border-radius:16px; padding:30px 24px; text-align:center; color:#fff;}
-  .fe .lp-band h3{font-family:var(--serif); font-size:19px; margin:0 0 8px;}
-  .fe .lp-band p{font-size:12px; opacity:.95; margin:0 0 18px; line-height:1.8;}
-  .fe .lp-band .m-btn{background:#fff; color:var(--p-d); box-shadow:0 6px 18px rgba(90,60,70,.2);}
+  /* ログイン画面（認証フォーム） */
   .fe .authwrap{padding:38px 28px; display:flex; justify-content:center;}
   .fe .authbox{width:100%; max-width:344px; background:#fff; border-radius:18px; padding:30px 28px; box-shadow:0 10px 30px rgba(150,110,120,.13);}
   .fe .authbox h3{font-family:var(--serif); font-size:20px; text-align:center; margin:0 0 7px;}
   .fe .authbox .asub{font-size:11.5px; color:var(--fe-tx2); text-align:center; margin:0 0 20px; line-height:1.7;}
-  .fe .afree{background:#eaf4ee; color:#3f7a5c; font-size:11.5px; border-radius:9px; padding:9px 12px; text-align:center; margin-bottom:20px;}
   .fe .afield{margin-bottom:14px;}
   .fe .afield label{display:block; font-size:11.5px; color:var(--fe-tx2); margin-bottom:6px;}
   .fe .afield input{width:100%; border:1px solid #ecdfe0; border-radius:10px; padding:11px 13px; font-size:12.5px; font-family:inherit; color:var(--fe-tx); background:#fdfafa;}
   .fe .abtn{width:100%; background:linear-gradient(135deg,var(--p),var(--lav)); color:#fff; border:none; border-radius:24px; padding:13px; font-size:13.5px; font-family:inherit; cursor:pointer; margin-top:6px; box-shadow:0 6px 18px rgba(180,110,135,.3);}
-  .fe .aalt{text-align:center; font-size:11.5px; color:var(--fe-tx2); margin-top:18px;}
-  .fe .aalt a{color:var(--p-d); cursor:pointer; font-weight:600;}
-  /* 管理側の案内作成で使う seg-sm（中立スタイル） */
-  .seg-sm{display:inline-flex; border:0.5px solid var(--border-strong); border-radius:6px; overflow:hidden; margin-bottom:14px;}
-  .seg-sm button{border:none; background:transparent; font-family:inherit; font-size:12px; color:var(--text-2); padding:5px 12px; cursor:pointer;}
-  .seg-sm button.on{background:var(--accent); color:#fff;}
+  .fe .aalt{text-align:center; font-size:11px; color:var(--p-d); margin-top:18px; line-height:1.7;}
+  /* 別端末ブロック画面 */
+  .fe .blocked{padding:46px 26px; text-align:center;}
+  .fe .blocked .bk-ic{font-size:42px;}
+  .fe .blocked h3{font-family:var(--serif); font-size:19px; margin:14px 0 8px; color:var(--fe-tx);}
+  .fe .blocked p{font-size:12.5px; color:#6f636a; line-height:1.95; max-width:320px; margin:0 auto;}
+  .fe .blocked .bk-note{margin-top:18px; font-size:11.5px; color:var(--p-d); background:#f3e7ea; display:inline-block; padding:8px 14px; border-radius:20px;}
 
   /* 管理者ビュー（WordPress 管理画面） */
   .adm{display:flex; min-height:360px;}
-  .adm-side{width:154px; flex-shrink:0; background:#23282d; color:#cfd4d8; padding:8px 0; font-size:12.5px;}
+  .adm-side{width:164px; flex-shrink:0; background:#23282d; color:#cfd4d8; padding:8px 0; font-size:12.5px;}
   .adm-side .as-brand{padding:6px 14px 12px; color:#fff; font-weight:600; font-size:11.5px; opacity:.75;}
   .adm-side .as-item{padding:8px 14px; display:flex; gap:9px; align-items:center; cursor:pointer;}
   .adm-side .as-item:hover{background:#191e23;}
@@ -229,10 +139,6 @@
   .adm-main{flex:1; min-width:0; background:#f0f0f1; padding:16px; overflow-x:auto;}
   .adm-main .am-h{font-size:16px; font-weight:600; margin:0 0 4px;}
   .adm-main .am-sub{font-size:12px; color:var(--text-3); margin:0 0 14px;}
-  .acards{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:16px;}
-  .acard{background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:11px 14px;}
-  .acard .acl{font-size:11px; color:var(--text-3);}
-  .acard .acv{font-size:19px; font-weight:600; margin-top:3px;}
   .apanel{background:#fff; border:0.5px solid #dcdcde; border-radius:6px; margin-bottom:13px; overflow:hidden;}
   .apanel .ap-h{font-size:13px; font-weight:600; padding:10px 14px; border-bottom:0.5px solid #e5e5e7; display:flex; justify-content:space-between; align-items:center; gap:10px;}
   .apanel .ap-h .ap-act{font-size:11px; font-weight:500; color:var(--accent); white-space:nowrap;}
@@ -244,36 +150,17 @@
   .tag{font-size:10.5px; padding:2px 9px; border-radius:20px; white-space:nowrap;}
   .tag.ok{background:var(--success-bg); color:var(--success);}
   .tag.wait{background:var(--warning-bg); color:var(--warning);}
-  .mini-note{font-size:11px; color:var(--text-3); padding:0 14px 11px; line-height:1.6;}
   .adm-note{font-size:12px; color:var(--text-3); line-height:1.7;}
   .adm-note b{color:var(--text); font-weight:600;}
-  /* 管理フォーム風 */
   .frow{margin-bottom:12px;}
   .frow label{display:block; font-size:12px; font-weight:600; color:var(--text-2); margin-bottom:5px;}
-  .finput,.fsel,.ftext{width:100%; border:0.5px solid #c7c7cb; border-radius:5px; padding:8px 10px; font-size:12.5px; font-family:inherit; color:var(--text-2); background:#fff;}
-  .ftext{min-height:64px; resize:none;}
+  .finput,.fsel{width:100%; border:0.5px solid #c7c7cb; border-radius:5px; padding:8px 10px; font-size:12.5px; font-family:inherit; color:var(--text-2); background:#fff;}
   .fbtn{background:var(--accent); color:#fff; border:none; border-radius:5px; padding:8px 16px; font-size:12.5px; font-family:inherit; cursor:pointer;}
-  .fbtn.sub{background:#fff; color:var(--accent); border:0.5px solid var(--accent);}
-  .upbox{border:1.5px dashed #b9b9bd; border-radius:8px; background:#fafafa; padding:22px 16px; text-align:center; font-size:12px; color:var(--text-3);}
-  .upbox .upic{font-size:26px; display:block; margin-bottom:6px;}
-  .uphas{display:flex; align-items:center; gap:12px;}
-  .upthumb{width:64px; aspect-ratio:3/4; border-radius:5px; background:linear-gradient(160deg,#1f5fa5,#3b82c4); flex-shrink:0;}
   .vlist-row{display:flex; align-items:center; gap:12px; padding:9px 14px; border-bottom:0.5px solid #f0f0f1; font-size:12.5px;}
   .vlist-row:last-child{border-bottom:none;}
   .vlist-row .vl-n{flex:1; min-width:0;}
   .vlist-row .vl-t{font-size:11px; color:var(--text-3); white-space:nowrap;}
-  .bar{height:8px; border-radius:5px; background:#e5e5e7; overflow:hidden; margin-top:5px;}
-  .bar i{display:block; height:100%; background:var(--accent); border-radius:5px;}
-
-  /* プラグイン標準画面の見出し・タブ・外部注記 */
-  .pbrand{display:flex; align-items:center; gap:9px; background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:11px 14px; font-size:13px; font-weight:600; margin-bottom:12px;}
-  .pbrand .pb-ic{width:22px; height:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; flex-shrink:0;}
-  .pbrand small{font-weight:400; color:var(--text-3); font-size:11px; margin-left:auto;}
-  .ptabs{display:flex; gap:16px; border-bottom:0.5px solid #e5e5e7; margin:0 0 14px; font-size:12.5px; overflow-x:auto;}
-  .ptabs span{padding:9px 0; color:var(--text-3); border-bottom:2px solid transparent; white-space:nowrap;}
-  .ptabs span.on{color:var(--text); border-bottom-color:var(--accent); font-weight:600;}
-  .ext-note{background:#fff7e6; border:0.5px solid #f0d9a8; border-radius:6px; padding:10px 13px; font-size:11.5px; color:#8a6d1f; margin-bottom:13px; line-height:1.65;}
-  /* かんたん運用メニュー（カスタムページ） */
+  /* かんたん運用メニュー */
   .ops-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:11px;}
   .ops-card{background:#fff; border:0.5px solid #dcdcde; border-radius:8px; padding:14px 15px; cursor:pointer; transition:box-shadow .15s;}
   .ops-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.09);}
@@ -281,13 +168,7 @@
   .ops-card .oc-t{font-size:13px; font-weight:600; margin:8px 0 3px;}
   .ops-card .oc-d{font-size:11.5px; color:var(--text-3); line-height:1.65;}
   .ops-card .oc-go{font-size:11px; color:var(--accent); margin-top:9px;}
-  /* Gutenberg 風 */
-  .gb-bar{display:flex; justify-content:space-between; align-items:center; background:#fff; border:0.5px solid #dcdcde; border-radius:6px; padding:9px 14px; margin-bottom:12px; font-size:12px; color:var(--text-3);}
-  .gb-title{border:none; border-bottom:1px dashed #d0d0d3; font-size:20px; font-weight:700; font-family:inherit; padding:6px 2px; width:100%; color:var(--text); margin-bottom:14px; background:transparent;}
-  .gb-block{border:0.5px solid #e5e5e7; border-radius:6px; padding:14px; margin-bottom:10px; font-size:12.5px; color:var(--text-2); line-height:1.85; background:#fff;}
-  .gb-img{display:flex; gap:12px; align-items:center;}
 
-  .pv-ctrls{display:flex; gap:8px; flex-wrap:wrap;}
   /* スマホ実機フレーム */
   .pv-phone{display:flex; justify-content:center; padding:8px 0 4px;}
   .phone{width:390px; max-width:100%; background:#111214; border-radius:42px; padding:11px; box-shadow:0 22px 52px rgba(0,0,0,.3);}
@@ -297,7 +178,6 @@
   .phone-addr{padding:4px 12px 9px; background:#fff;}
   .phone-addr .pa{display:block; background:#efece8; border-radius:15px; text-align:center; font-size:10px; color:var(--text-3); padding:6px 12px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
   .phone-body{height:600px; overflow-y:auto; overflow-x:hidden;}
-  /* スマホ最適化（受講者側） */
   .sp .fe-head{padding:12px 15px;}
   .sp .fe-logo{font-size:15px;}
   .sp .fe-nav{padding:0 10px;}
@@ -310,27 +190,16 @@
   .sp .mb-foot{margin:18px 18px 0;}
   .sp .player .pbtn{width:54px; height:54px; font-size:19px;}
   .sp .wtitle{font-size:18px;}
-  .sp .lp-hero{padding:38px 18px 32px;}
-  .sp .lp-hero h1{font-size:21px;}
-  .sp .lp-hero p{font-size:12px;}
-  .sp .lp-features{grid-template-columns:1fr; gap:10px; padding:20px 18px;}
-  .sp .lp-band{margin:0 18px 20px; padding:24px 18px;}
-  .sp .annai-wrap{flex-direction:column;}
-  .sp .flyer{width:100%; aspect-ratio:auto; min-height:240px;}
   .sp .authwrap{padding:24px 16px;}
-  .sp .fe-demo{padding:8px 12px;}
-  /* スマホ最適化（管理画面：左メニューを上部の横スクロールに） */
   .sp .adm{flex-direction:column; min-height:0;}
   .sp .adm-side{width:100%; display:flex; gap:2px; overflow-x:auto; padding:6px 6px 0;}
   .sp .adm-side .as-brand{display:none;}
   .sp .adm-side .as-item{flex-direction:column; gap:3px; font-size:9.5px; padding:7px 8px; white-space:nowrap; border-radius:6px 6px 0 0; text-align:center; line-height:1.2;}
   .sp .adm-side .as-item .ai{width:auto; font-size:14px;}
   .sp .adm-main{padding:14px;}
-  .sp .acards{grid-template-columns:1fr 1fr;}
   .sp .ops-grid{grid-template-columns:1fr;}
   .sp .atable{font-size:11px;}
   .sp .atable th,.sp .atable td{padding:7px 8px;}
-  .sp .ptabs{gap:12px; font-size:11.5px;}
 
   /* 利用の流れ（相関フロー） */
   .flow-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:34px 0 6px;}
@@ -358,53 +227,26 @@
 </head>
 <body>
 <div class="wrap">
-  <span class="sr-only">セミナー会員サイトの仕様コンフィギュレーター。6つのスイッチを切り替えると構成・要件充足・実装・費用が連動します。</span>
+  <span class="sr-only">セミナー動画 会員システムの確定仕様の確認ページ。仕組みの要点、画面イメージ、利用の流れを掲載しています。</span>
 
-  <div class="top-grid">
-  <div class="col col-left">
   <div class="cover">
-    <span class="eyebrow">石原先生へ — セミナー動画 会員サイトのご提案</span>
-    <h1>受講された方だけが、動画を見られる仕組み</h1>
-    <p class="lead">いまは動画のURLが受講していない方にも広まり、無料で見られてしまっている状態です。このページは、それを<strong>技術的に防ぐ</strong>会員サイトを、どんな構成で作るかを先生に選んでいただくためのものです。むずかしい設定は不要で、スイッチを触って見比べていただくだけです。</p>
+    <span class="eyebrow">石原先生へ — セミナー動画 会員システム（確定仕様のご確認）</span>
+    <h1>参加された方だけが、登録した端末で動画を見られる仕組み</h1>
+    <p class="lead">現行サイト（COCO DentMedical）を内容そのままリニューアルし、セミナー動画を<strong>参加者だけ</strong>が見られる会員システムを追加します。ログイン情報を他人に教えても、<strong>登録した端末以外では視聴できない</strong>のがポイントです。以下は先日固まった仕組みのご確認用です。</p>
     <div class="points">
-      <div class="pt"><span class="pi">🔒</span><div><b>受講した人だけ</b>が、自分のページから自分の動画を見られます。受講していない動画は表示されません。</div></div>
-      <div class="pt"><span class="pi">🆓</span><div>会員登録は<b>無料</b>。お金がかかるのは受講（セミナー参加）のときだけです。</div></div>
-      <div class="pt"><span class="pi">🎬</span><div>動画は外部へ持ち出せない形で配信します。URLを知っていても、サイトの外では再生できません。</div></div>
+      <div class="pt"><span class="pi">🔑</span><div>アカウントは<b>管理者が発行</b>（勝手な新規登録はできません）。参加者にログイン情報をお渡しします。</div></div>
+      <div class="pt"><span class="pi">📱</span><div>ログイン情報を共有されても、<b>登録した端末（最大2台）以外では視聴不可</b>。無断共有を防ぎます。</div></div>
+      <div class="pt"><span class="pi">🎬</span><div>各参加者は<b>自分が参加したセミナーの動画だけ</b>を、視聴期限内に視聴できます。</div></div>
     </div>
     <div class="howto">
-      <div class="ht-title">このページの使い方</div>
-      <ol>
-        <li>下の<b>スイッチ</b>を、上から順に切り替えてみてください。</li>
-        <li>切り替えるたびに、<b>構成・できること・費用の目安</b>がその下に自動で表示されます。</li>
-        <li>気になる組み合わせが見つかったら、開発担当（コウジ）にお伝えください。そのまま制作に進みます。</li>
-      </ol>
+      <div class="ht-title">この資料の見方</div>
+      <p>下の<b>「確定した仕組み」</b>で全体像 → <b>「完成イメージ」</b>で実際の画面（PC／スマホ）→ 一番下の<b>「利用の流れ」</b>で受講者と先生の動きを確認できます。</p>
     </div>
-    <p class="cover-note">※ サイトを作る費用（開発の手間）は当方で負担します。下に表示される費用は、サービスの利用料など毎月の維持費の目安です。なお、サイトのアドレス（独自ドメイン）を新しく取得する場合のみ、別途おおよそ年額1,000〜2,000円程度がかかることがあります（既存のものを使う場合は不要です）。</p>
+    <p class="cover-note">※ セミナー参加の申込・案内は、これまで通り<b>既存のGoogleフォーム／公式LINE等</b>で運用します（このシステムに申込・決済機能は含みません）。公開サイトは現在のURLのままリニューアルします。</p>
   </div>
 
-  <div class="panel">
-    <div class="panel-head"><span class="tic ic">⚙</span><h2>構成スイッチ</h2></div>
-    <p class="note">上から順に切り替えてください（決済は申込ON、申込は案内ONが前提です）。</p>
-    <div id="toggles"></div>
-  </div>
-  </div>
-
-  <div class="col col-right">
-  <div class="rc-title">現在の構成</div>
-  <div id="banner"></div>
-
-  <div class="metrics">
-    <div class="metric"><div class="ml">想定の月額維持費</div><div class="mv" id="m-month">—</div></div>
-    <div class="metric"><div class="ml">満たせる要件</div><div class="mv" id="m-req">—</div></div>
-  </div>
-
-  <h3>この構成で必要なもの</h3>
-  <div id="stack" class="stack"></div>
-
-  <h3>要件の充足状況</h3>
-  <div id="reqs" class="reqs"></div>
-  </div>
-  </div>
+  <h3>確定した仕組み</h3>
+  <div class="spec-grid" id="spec"></div>
 
   <div class="pv-head">
     <h3>完成イメージ（画面プレビュー）</h3>
@@ -419,319 +261,118 @@
       </div>
     </div>
   </div>
-  <p class="pv-note">実際のサイトと同じく、画面は複数のページに分かれます。受講者側は上部のタブ、管理者側は左メニューで切り替え。右の「PC／スマホ」で表示端末も切り替えられます。上の構成スイッチに連動して、ページや項目が増減します。</p>
+  <p class="pv-note">受講者側は上部タブ（<b>ログイン → マイページ → 視聴</b>、および<b>別端末での表示</b>）、管理者側は左メニューで切り替え。右の「PC／スマホ」で端末表示も切り替えられます。</p>
   <div id="pv-frame"></div>
-  <p class="pv-cap">※ 受講者側は本サイトのデザインイメージ（写真は後日差し替え）。管理者側は、実際に導入するプラグイン（Tutor LMS・MailPoet・WooCommerce・Bunny 等）の標準画面に沿ったイメージで、加えて先生用の「かんたん運用メニュー」を1枚だけ用意します。文中の氏名・日程はサンプルです。</p>
+  <p class="pv-cap">※ 受講者側は会員動画エリアのデザインイメージ（公開サイトのリニューアルは別途）。管理者側は WordPress 管理画面のイメージです。氏名・日程・IDはサンプルです。</p>
 
   <div class="flow-head">
-    <h3>利用の流れ（選択中の構成の場合）</h3>
-    <div class="seg" id="pv-persona">
-      <button data-p="new">はじめての衛生士</button>
-      <button data-p="existing">受講済みの衛生士</button>
-    </div>
+    <h3>利用の流れ</h3>
   </div>
-  <p class="pv-note">上の構成スイッチに連動します。左が<b>受講者（衛生士）</b>、右が<b>先生（運営）</b>の流れで、<b>同じ行が対応</b>しています。</p>
+  <p class="pv-note">左が<b>受講者（衛生士）</b>、右が<b>先生（運営）</b>の動きで、<b>同じ行が対応</b>しています。</p>
   <div id="flow"></div>
 
   <div class="foot">
-    費用は2026年6月時点の概算・税別。為替やサービス改定で変動します。<br>
-    Passione / G TECH JAPAN　石原先生 セミナー会員サイト 仕様検討用
+    Passione / G TECH JAPAN　石原先生 セミナー動画 会員システム 仕様確認用<br>
+    確定仕様：現行サイトのリニューアル＋会員動画エリア（管理者発行ログイン・端末しばり・視聴期限）
   </div>
 </div>
 
 <script>
-var state={annaai:true,moushikomi:true,kessai:false,spread:"mid",expiry:true,budget:"allow",preview:"member",device:"pc",feAuth:"guest",gpage:"top",mpage:"mypage",apage:"ops",annaiType:"flyer",persona:"new"};
+var state={preview:"member",device:"pc",mpage:"login",apage:"ops"};
 
-var TOGGLES=[
-  {key:"annaai",icon:"📢",label:"講習の案内をサイトで行う",hint:"登録ユーザー全員に一律でお知らせ",type:"bool"},
-  {key:"moushikomi",icon:"📋",label:"申し込みをサイト内で行う",hint:"案内ONが前提",type:"bool",needs:"annaai"},
-  {key:"kessai",icon:"💳",label:"決済をサイト内で行う（カード）",hint:"申込ONが前提。OFFは銀行振込＋手動入金フラグ",type:"bool",needs:"moushikomi"},
-  {key:"spread",icon:"🔒",label:"動画の拡散防止レベル",type:"choice",opts:[{v:"low",t:"弱"},{v:"mid",t:"中"}],hints:{low:"ログイン必須のみ",mid:"サイト外では再生不可（推奨）"}},
-  {key:"expiry",icon:"⏱",label:"動画ごとの閲覧期限を設ける",hint:"動画単位で「公開から○日」を設定",type:"bool"},
-  {key:"budget",icon:"💰",label:"維持費の方針",type:"choice",opts:[{v:"free",t:"無料優先"},{v:"allow",t:"費用許容"}],hints:{free:"固定費を極力ゼロに",allow:"月数千円までは許容"}}
+/* 確定した仕組み */
+var SPEC=[
+  {ic:"🖥",t:"公開サイトのリニューアル",d:"お知らせ・過去の実績・セミナー内容を更新。参加申請ボタンは<b>既存のGoogleフォーム</b>へのリンク。"},
+  {ic:"🔑",t:"ログインは管理者発行",d:"<b>自己登録なし</b>。会員ID（採番）とパスワードを管理者が発行し、参加者へ配布。"},
+  {ic:"🎬",t:"自分の参加分だけ視聴",d:"参加したセミナーの動画<b>のみ</b>表示。過去に参加した分も後から紐付け可能。"},
+  {ic:"📱",t:"端末しばり（2台まで）",d:"<b>PC＋スマホの2台まで</b>登録。別端末では視聴不可＝ID共有で見られない。"},
+  {ic:"⏱",t:"視聴期限",d:"動画ごとに<b>「公開から○日」</b>。期限を過ぎると視聴終了。"},
+  {ic:"🔒",t:"動画URLの保護",d:"<b>署名URL＋ドメイン制限</b>で、URLを抜かれても外部では再生不可。"}
 ];
-
-function computeReqs(){
-  var X=state.moushikomi;
-  return [
-    {t:"受講した動画だけを紐付けて閲覧",s:"ok",how:"LMSのコース割り当て（標準）"},
-    {t:"動画ごとの閲覧期限",s:state.expiry?"ok":"off",how:state.expiry?"LMSアクセス期限＋署名URLのTTL":"期限なし設定"},
-    {t:"動画ごとの総再生回数",s:"ok",how:"Bunny Stream標準分析"},
-    {t:"概算ユニーク再生",s:"partial",how:"Bunny分析（セッション基準・厳密会員紐付けは不可）"},
-    {t:"ユーザーごとの受講履歴",s:X?"ok":"na",how:X?"LMS標準":"申込ONで有効"},
-    {t:"イベント別の参加者リスト",s:X?"ok":"na",how:X?"LMS受講者一覧／Groups":"申込ONで有効"},
-    {t:"参加者の入金状態管理",s:X?"add":"na",how:X?"入金フラグのカスタムフィールド（軽微）":"申込ONで有効"},
-    {t:"参加者へ全体・個別メッセージ",s:X?"add":"na",how:X?"配信プラグイン＋イベント絞り込み（軽い作り込み）":"申込ONで有効"},
-    {t:"登録ユーザー全員へ案内メール",s:state.annaai?"ok":"na",how:state.annaai?"メール配信プラグイン":"案内ONで有効"},
-    {t:"リストのCSVダウンロード",s:X?"ok":"na",how:X?"LMS／会員のエクスポート":"申込ONで有効"}
-  ];
-}
-
-function computeMode(){
-  if(state.moushikomi) return {name:"モードX — フル機能",color:"var(--accent)",bg:"var(--accent-bg)",desc:"案内・申込・参加者管理・動画まで一体運用"};
-  return {name:"モードY — 動画のみ",color:"var(--success)",bg:"var(--success-bg)",desc:"案内も申込もせず、登録ユーザーに動画だけ配信"};
-}
-
-function computeStack(){
-  var s=[];
-  s.push({n:"WordPress",d:"土台（既存Xserver流用可）",pay:"無料"});
-  var lms=(state.budget==="free"&&!state.moushikomi)?"Tutor LMS 無料版":(state.moushikomi?"LearnDash もしくは Tutor LMS Pro":"Tutor LMS（無料版〜）");
-  var lmsPay=(state.budget==="free"&&!state.moushikomi)?"無料":(state.moushikomi?"年 約3〜4万円":"無料〜");
-  s.push({n:"LMS",d:lms,pay:lmsPay});
-  s.push({n:"動画ホスティング",d:"Bunny Stream（署名URL・総再生数分析）",pay:"従量・月数百円〜"});
-  if(state.spread==="mid") s.push({n:"拡散防止",d:"ドメイン制限＋署名URLトークン",pay:"ホスティングに含む"});
-  else s.push({n:"拡散防止",d:"WPログイン必須のみ（簡易）",pay:"無料"});
-  if(state.annaai) s.push({n:"メール配信",d:state.budget==="free"?"MailPoet 無料枠":"MailPoet等 有料（配信無制限）",pay:state.budget==="free"?"無料":"無料〜年1万円程度"});
-  if(state.kessai) s.push({n:"決済",d:"WooCommerce＋カード決済（PAY.JP等）",pay:"従量手数料"});
-  else if(state.moushikomi) s.push({n:"入金管理",d:"銀行振込＋手動入金フラグ",pay:"無料（運用対応）"});
-  if(state.expiry) s.push({n:"閲覧期限",d:"LMSアクセス期限＋署名URL TTL",pay:"標準機能"});
-  return s;
-}
-
-function computeCost(){
-  var month=0;
-  if(state.moushikomi) month+=state.budget==="free"?1000:3500; else month+=state.budget==="free"?300:1200;
-  if(state.spread==="mid") month+=300;
-  if(state.annaai&&state.budget==="allow") month+=800;
-  var label;
-  if(month<=600) label="実質0〜1,000円";
-  else if(month<=2000) label="約1,000〜2,000円";
-  else if(month<=4000) label="約3,000〜5,000円";
-  else label="約5,000〜7,000円";
-  if(state.kessai) label+="＋手数料";
-  return {monthLabel:label};
-}
-
-function toggleBool(key){
-  state[key]=!state[key];
-  if(key==="annaai"&&!state.annaai){state.moushikomi=false;state.kessai=false;}
-  if(key==="moushikomi"){ if(state.moushikomi){state.annaai=true;} else {state.kessai=false;} }
-  if(key==="kessai"&&state.kessai){state.moushikomi=true;state.annaai=true;}
-  renderAll();
-}
-
-function renderToggles(){
-  var el=document.getElementById("toggles"); el.innerHTML="";
-  TOGGLES.forEach(function(T){
-    var disabled=T.needs&&!state[T.needs];
-    var row=document.createElement("div");
-    row.className="trow"+(disabled?" disabled":"");
-    var hintText=T.type==="choice"?(T.hints[state[T.key]]||""):(T.hint||"");
-    row.innerHTML='<span class="tic">'+T.icon+'</span><div class="tlabel"><div class="tt">'+T.label+'</div><div class="th">'+hintText+'</div></div>';
-    if(T.type==="bool"){
-      var sw=document.createElement("button");
-      sw.className="sw"+(state[T.key]?" on":"");
-      sw.setAttribute("aria-label",T.label);
-      sw.setAttribute("aria-pressed",state[T.key]?"true":"false");
-      sw.innerHTML='<span class="knob"></span>';
-      if(disabled) sw.disabled=true; else sw.onclick=function(){toggleBool(T.key);};
-      row.appendChild(sw);
-    } else {
-      var seg=document.createElement("div"); seg.className="seg";
-      T.opts.forEach(function(o){
-        var b=document.createElement("button");
-        b.textContent=o.t;
-        if(state[T.key]===o.v) b.className="active";
-        b.onclick=function(){state[T.key]=o.v;renderAll();};
-        seg.appendChild(b);
-      });
-      row.appendChild(seg);
-    }
-    el.appendChild(row);
+function renderSpec(){
+  var h="";
+  SPEC.forEach(function(s){
+    h+='<div class="spec-card"><div class="sc-ic">'+s.ic+'</div><div class="sc-t">'+s.t+'</div><div class="sc-d">'+s.d+'</div></div>';
   });
+  document.getElementById("spec").innerHTML=h;
 }
 
-function renderBanner(){
-  var m=computeMode();
-  document.getElementById("banner").innerHTML=
-    '<div class="banner" style="border-color:'+m.color+'">'+
-    '<span class="pill" style="background:'+m.bg+';color:'+m.color+'">現在の構成</span>'+
-    '<div class="bn">'+m.name+'</div><div class="bd">'+m.desc+'</div></div>';
-}
-
-function renderStack(){
-  var el=document.getElementById("stack"); el.innerHTML="";
-  computeStack().forEach(function(s){
-    var row=document.createElement("div"); row.className="rowcard";
-    row.innerHTML='<span class="rn">'+s.n+'</span><span class="rd">'+s.d+'</span><span class="rp">'+s.pay+'</span>';
-    el.appendChild(row);
-  });
-}
-
-function renderReqs(){
-  var el=document.getElementById("reqs"); el.innerHTML="";
-  var okc=0,tot=0;
-  var MAP={
-    ok:{i:"ic-check",c:"var(--success)",t:"対応"},
-    partial:{i:"ic-dash",c:"var(--warning)",t:"概算で対応"},
-    add:{i:"ic-tool",c:"var(--warning)",t:"軽微な追加実装"},
-    off:{i:"ic-minus",c:"var(--text-3)",t:"オフ設定"},
-    na:{i:"ic-lock",c:"var(--text-3)",t:"この構成では対象外"}
-  };
-  computeReqs().forEach(function(r){
-    if(r.s!=="na"&&r.s!=="off"){tot++; if(r.s==="ok"||r.s==="partial"||r.s==="add") okc++;}
-    var m=MAP[r.s]; var dim=(r.s==="na");
-    var row=document.createElement("div"); row.className="req"+(dim?" dim":"");
-    row.innerHTML='<span class="ri '+m.i+'"></span><div class="rb"><div class="rt">'+r.t+'</div><div class="rh">'+r.how+'</div></div><span class="rs" style="color:'+m.c+'">'+m.t+'</span>';
-    el.appendChild(row);
-  });
-  document.getElementById("m-req").textContent=okc+" / "+tot;
-}
-
-function renderCost(){
-  var c=computeCost();
-  document.getElementById("m-month").textContent=c.monthLabel;
-}
-
-/* ===== 画面プレビュー（複数ページ・タブ切替） ===== */
+/* ===== 画面プレビュー ===== */
+function findUrl(list,k){for(var i=0;i<list.length;i++){if(list[i].k===k)return list[i].url;}return list[0].url;}
 function vcard(title,meta,lock){
   return '<div class="vcard" data-mtab="watch"><div class="vthumb">'+lock+'<div class="play">▶</div></div>'+
     '<div class="vbody"><div class="vtitle">'+title+'</div>'+meta+'</div></div>';
 }
-function acard(l,v){return '<div class="acard"><div class="acl">'+l+'</div><div class="acv">'+v+'</div></div>';}
-function findUrl(list,k){for(var i=0;i<list.length;i++){if(list[i].k===k)return list[i].url;}return list[0].url;}
+function opsCard(ic,t,d,go){
+  return '<div class="ops-card" data-apage="'+go+'"><div class="oc-ic">'+ic+'</div><div class="oc-t">'+t+'</div><div class="oc-d">'+d+'</div><div class="oc-go">→ 開く</div></div>';
+}
 
 function memberPages(){
-  var p=[{k:"mypage",label:"マイページ",url:"/mypage"},{k:"watch",label:"動画を見る",url:"/course/perio-1"}];
-  if(state.annaai) p.push({k:"annai",label:"セミナー案内",url:"/seminar/next"});
-  return p;
-}
-function guestPages(){
-  return [{k:"top",label:"トップ",url:"/"},{k:"register",label:"会員登録",url:"/register"},{k:"login",label:"ログイン",url:"/login"}];
-}
-function feat(ic,t,d){return '<div class="feat"><div class="fic">'+ic+'</div><div class="ft">'+t+'</div><div class="fd">'+d+'</div></div>';}
-function afield(label,ph,type){return '<div class="afield"><label>'+label+'</label><input type="'+(type||"text")+'" placeholder="'+ph+'"></div>';}
-
-function gTop(){
-  var h='<div class="lp-hero"><p class="lp-ey">DENTAL HYGIENE SEMINAR</p>'+
-        '<h1>石原先生のセミナーを、<br>いつでも動画で。</h1>'+
-        '<p>受講された歯科衛生士のための会員サイトです。学んだ内容を、期間内なら何度でも動画で振り返れます。会員登録は無料です。</p>'+
-        '<div class="lp-cta"><button class="m-btn" data-gtab="register">無料で会員登録</button>'+
-        '<button class="m-btn ghost" data-gtab="login">ログイン</button></div></div>';
-  h+='<div class="lp-features">'+
-     feat("🎬","受講した動画を何度でも","参加したセミナーの動画を、視聴期間内はいつでも見返せます。")+
-     feat("📱","スマホでも快適に","移動中やすきま時間に、スマートフォンからでもご視聴いただけます。")+
-     feat("🔒","安心のセキュリティ","受講された方だけが視聴でき、動画が外部に流出しません。")+'</div>';
-  h+='<div class="lp-band"><h3>まずは無料で会員登録</h3>'+
-     '<p>登録は無料。受講されたセミナーの動画が、あなたのマイページに並びます。</p>'+
-     '<button class="m-btn" data-gtab="register">無料で会員登録する</button></div>';
-  return h;
-}
-function gRegister(){
-  return '<div class="authwrap"><div class="authbox"><h3>会員登録</h3>'+
-    '<p class="asub">受講したセミナーの動画を視聴するためのアカウントを作成します。</p>'+
-    '<div class="afree">✓ 会員登録・年会費は無料です</div>'+
-    afield("お名前","山田 花子")+afield("メールアドレス","hanako@example.com")+afield("パスワード","••••••••","password")+
-    '<button class="abtn" data-feauth="member">無料で登録する</button>'+
-    '<div class="aalt">すでに登録済みの方は <a data-gtab="login">ログイン</a></div></div></div>';
-}
-function gLogin(){
-  return '<div class="authwrap"><div class="authbox"><h3>ログイン</h3>'+
-    '<p class="asub">会員の方はこちらからログインしてください。</p>'+
-    afield("メールアドレス","hanako@example.com")+afield("パスワード","••••••••","password")+
-    '<button class="abtn" data-feauth="member">ログイン</button>'+
-    '<div class="aalt">はじめての方は <a data-gtab="register">会員登録（無料）</a></div></div></div>';
+  return [
+    {k:"login",label:"ログイン",url:"/members/login"},
+    {k:"mypage",label:"マイページ",url:"/members/mypage"},
+    {k:"watch",label:"動画を見る",url:"/members/video/perio-1"},
+    {k:"blocked",label:"別端末での表示",url:"/members/mypage"}
+  ];
 }
 function adminPages(){
-  var X=state.moushikomi;
-  var p=[{k:"ops",ic:"✨",label:"かんたん運用",url:"/wp-admin/admin.php?page=ops"},
-         {k:"dash",ic:"⌂",label:"ダッシュボード",url:"/wp-admin/"},
-         {k:"tutor",ic:"🎓",label:"Tutor LMS",url:"/wp-admin/admin.php?page=tutor"}];
-  if(state.annaai) p.push({k:"post",ic:"✎",label:"投稿（案内）",url:"/wp-admin/edit.php"});
-  if(state.kessai) p.push({k:"woo",ic:"🛒",label:"WooCommerce",url:"/wp-admin/admin.php?page=wc-orders"});
-  if(X||state.annaai) p.push({k:"mail",ic:"✉",label:"MailPoet",url:"/wp-admin/admin.php?page=mailpoet"});
-  p.push({k:"bunny",ic:"🎬",label:"Bunny（動画）",url:"https://dash.bunny.net/stream"});
-  p.push({k:"settings",ic:"⚙",label:"設定",url:"/wp-admin/options-general.php"});
-  return p;
+  return [
+    {k:"ops",ic:"✨",label:"運用メニュー",url:"/wp-admin/admin.php?page=ops"},
+    {k:"users",ic:"👤",label:"受講者アカウント",url:"/wp-admin/users.php"},
+    {k:"assign",ic:"🎓",label:"受講の割当",url:"/wp-admin/admin.php?page=assign"},
+    {k:"videos",ic:"🎬",label:"セミナー動画",url:"/wp-admin/admin.php?page=videos"},
+    {k:"devices",ic:"📱",label:"端末管理",url:"/wp-admin/admin.php?page=devices"},
+    {k:"settings",ic:"⚙",label:"設定",url:"/wp-admin/options-general.php"}
+  ];
 }
 
 function memberView(){
-  var h='<div class="fe">';
-  h+='<div class="fe-demo"><span class="fe-demo-l">プレビュー表示</span>'+
-     '<div class="seg-sm2"><button data-feauth="guest" class="'+(state.feAuth==="guest"?"on":"")+'">ログイン前のサイト</button>'+
-     '<button data-feauth="member" class="'+(state.feAuth==="member"?"on":"")+'">ログイン後（会員ページ）</button></div></div>';
-  if(state.feAuth==="guest"){
-    var gp=guestPages();
-    if(!gp.some(function(p){return p.k===state.gpage;})) state.gpage=gp[0].k;
-    h+='<header class="fe-head"><div class="fe-logo">石原デンタルセミナー<span>ISHIHARA DENTAL SEMINAR</span></div>'+
-       '<div class="fe-authbtns"><button class="fe-login" data-gtab="login">ログイン</button>'+
-       '<button class="fe-reg" data-gtab="register">新規登録</button></div></header>';
-    h+='<nav class="fe-nav">';
-    gp.forEach(function(p){h+='<button class="mtab'+(p.k===state.gpage?" on":"")+'" data-gtab="'+p.k+'">'+p.label+'</button>';});
-    h+='</nav><div class="fe-body">';
-    if(state.gpage==="top") h+=gTop();
-    else if(state.gpage==="register") h+=gRegister();
-    else if(state.gpage==="login") h+=gLogin();
-    h+='</div>';
-  } else {
-    var pages=memberPages();
-    if(!pages.some(function(p){return p.k===state.mpage;})) state.mpage=pages[0].k;
-    h+='<header class="fe-head"><div class="fe-logo">石原デンタルセミナー<span>ISHIHARA DENTAL SEMINAR</span></div>'+
-       '<div class="fe-user">田中 花子 様　・　ログアウト</div></header>';
-    h+='<nav class="fe-nav">';
-    pages.forEach(function(p){h+='<button class="mtab'+(p.k===state.mpage?" on":"")+'" data-mtab="'+p.k+'">'+p.label+'</button>';});
-    h+='</nav><div class="fe-body">';
-    if(state.mpage==="mypage") h+=mpMypage();
-    else if(state.mpage==="watch") h+=mpWatch();
-    else if(state.mpage==="annai") h+=mpAnnai();
-    h+='</div>';
-  }
-  h+='</div>';
-  return h;
-}
-
-function mpMypage(){
-  var lock=state.spread==="mid"?'<span class="lock">🔒 サイト内のみ</span>':'';
-  var lim1=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと20日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
-  var lim2=state.expiry?'<span class="vmeta vlimit">⏱ 視聴期限：あと6日</span>':'<span class="vmeta">視聴期限：なし（いつでも視聴可）</span>';
-  var h='<div class="fe-hero"><p class="fe-ey">MY PAGE</p><h2>ようこそ、田中さん</h2>'+
-        '<p>受講されたセミナーの動画を、こちらからいつでもご視聴いただけます。</p></div>';
-  h+='<div class="fe-sec"><h3 class="fe-h">受講した動画</h3>'+
-     '<p class="fe-sub">あなたが受講したセミナーの動画だけが表示されます。カードをクリックすると視聴ページが開きます。</p>';
-  h+='<div class="vgrid">'+vcard("基礎から学ぶ歯周治療 第1回",lim1,lock)+vcard("スケーリング実技デモ",lim2,lock)+'</div></div>';
-  h+='<div class="mb-foot">※ 受講していないセミナーの動画は、ここには表示されません。'+
-     (state.spread==="mid"?'動画はこのサイトの中だけで再生でき、URLをコピーしても外部では再生できません。':'ログインした会員だけが視聴できます（URL自体の持ち出しは防ぎません）。')+'</div>';
-  return h;
-}
-
-function mpWatch(){
-  var plock=state.spread==="mid"?'<span class="plock">🔒 このサイト内でのみ再生</span>':'';
-  var lim=state.expiry?'　｜　<span class="vlimit">⏱ 視聴期限：あと20日</span>':'　｜　視聴期限：なし';
-  var h='<div class="fe-sec"><span class="back" data-mtab="mypage">← マイページに戻る</span>';
-  h+='<div class="player">'+plock+'<div class="pbtn">▶</div><div class="pbar"><i></i></div></div>';
-  h+='<div class="wtitle">基礎から学ぶ歯周治療 第1回</div>';
-  h+='<div class="wmeta">講師：石原 先生'+lim+'</div>';
-  h+='<div class="wdesc">歯周治療の基礎から、音波スケーラーの基本操作までを、症例を交えて丁寧に解説します。'+
-     (state.spread==="mid"?'この動画は会員サイト内のプレーヤーでのみ再生され、URLを取り出しても外部では再生できません。':'ログインした会員だけが視聴できます。')+'</div></div>';
-  return h;
-}
-
-function mpAnnai(){
-  var cta;
-  if(state.moushikomi){
-    cta=state.kessai
-      ? '<button class="m-btn">この回に申し込む</button><div class="m-pay">お支払い：クレジットカード（オンライン決済）</div>'
-      : '<button class="m-btn">この回に申し込む</button><div class="m-pay">お申込み後、銀行振込のご案内をメールでお送りします</div>';
-  } else {
-    cta='<div class="m-pay">お申し込みは別途ご案内します（このサイトでは申込は受け付けません）。</div>';
-  }
-  var h='<div class="fe-sec"><h3 class="fe-h">次回セミナーのご案内</h3>';
-  h+='<div class="seg-sm"><button class="'+(state.annaiType==="text"?"on":"")+'" data-annai="text">テキストで掲載</button>'+
-     '<button class="'+(state.annaiType==="flyer"?"on":"")+'" data-annai="flyer">フライヤー画像で掲載</button></div>';
-  h+='<div class="annai-wrap">';
-  if(state.annaiType==="flyer"){
-    h+='<div class="flyer"><div class="fk">DENTAL SEMINAR</div><div class="fttl">歯周治療における<br>音波スケーラーの活用</div>'+
-       '<div class="fmid">2026年7月20日(日)<br>13:00〜16:00<br>オンライン開催</div><div class="fimg">▲ アップロードしたフライヤー画像</div></div>';
-    h+='<div class="annai-side"><div class="kv"><b>日時：</b>7月20日(日) 13:00〜16:00<br><b>形式：</b>オンライン（Zoom）<br><b>定員：</b>50名</div>'+
-       '<div style="margin-top:16px">'+cta+'</div></div>';
-  } else {
-    h+='<div class="annai-side" style="flex-basis:100%"><div class="as-ttl">歯周治療における音波スケーラーの活用</div>'+
-       '<div class="as-d">音波スケーラーの基礎理論から臨床での使い分けまで、症例を交えて解説します。歯科衛生士の日々の診療にすぐ活かせる内容です。</div>'+
-       '<div class="kv"><b>日時：</b>7月20日(日) 13:00〜16:00<br><b>形式：</b>オンライン（Zoom）<br><b>定員：</b>50名</div>'+
-       '<div style="margin-top:16px">'+cta+'</div></div>';
-  }
+  var pages=memberPages();
+  if(!pages.some(function(p){return p.k===state.mpage;})) state.mpage=pages[0].k;
+  var loggedIn=(state.mpage==="mypage"||state.mpage==="watch");
+  var h='<div class="fe"><header class="fe-head"><div class="fe-logo">COCO DentMedical<span>SEMINAR MEMBERSHIP</span></div>'+
+        (loggedIn?'<div class="fe-user">田中 花子 様（会員ID: coco-0001）　・　ログアウト</div>':'<div class="fe-user">会員専用ページ</div>')+'</header>';
+  h+='<nav class="fe-nav">';
+  pages.forEach(function(p){h+='<button class="mtab'+(p.k===state.mpage?" on":"")+'" data-mtab="'+p.k+'">'+p.label+'</button>';});
+  h+='</nav><div class="fe-body">';
+  if(state.mpage==="login") h+=mpLogin();
+  else if(state.mpage==="mypage") h+=mpMypage();
+  else if(state.mpage==="watch") h+=mpWatch();
+  else if(state.mpage==="blocked") h+=mpBlocked();
   h+='</div></div>';
   return h;
+}
+function afield(label,ph,type){return '<div class="afield"><label>'+label+'</label><input type="'+(type||"text")+'" placeholder="'+ph+'"></div>';}
+function mpLogin(){
+  return '<div class="authwrap"><div class="authbox"><h3>会員ログイン</h3>'+
+    '<p class="asub">アカウントは管理者から発行されます（新規登録はありません）。配布された会員ID・パスワードでログインしてください。</p>'+
+    afield("会員ID","coco-0001")+afield("パスワード","••••••••","password")+
+    '<button class="abtn" data-mtab="mypage">ログイン</button>'+
+    '<div class="aalt">🔒 ログインできる端末は最大2台（PC＋スマホ）。<br>それ以外の端末では視聴できません。</div></div></div>';
+}
+function mpMypage(){
+  var h='<div class="fe-hero"><p class="fe-ey">MY PAGE</p><h2>ようこそ、田中さん</h2>'+
+        '<p>ご参加いただいたセミナーの動画を、こちらからご視聴いただけます。</p></div>';
+  h+='<div class="fe-sec"><h3 class="fe-h">受講したセミナーの動画</h3>'+
+     '<p class="fe-sub">ご自身が参加したセミナーの動画だけが表示されます。カードをクリックすると視聴ページが開きます。</p>';
+  h+='<div class="vgrid">'+
+     vcard("基礎から学ぶ歯周治療 第1回",'<span class="vmeta vlimit">⏱ 視聴期限：あと20日</span>','<span class="lock">🔒 登録端末のみ</span>')+
+     vcard("スケーリング実技デモ",'<span class="vmeta vlimit">⏱ 視聴期限：あと6日</span>','<span class="lock">🔒 登録端末のみ</span>')+'</div>';
+  h+='<div class="mb-foot">この端末（PC）は登録済みです。視聴できるのは登録した2台まで。動画はこのサイト内でのみ再生され、URLをコピーしても外部では再生できません。</div></div>';
+  return h;
+}
+function mpWatch(){
+  var h='<div class="fe-sec"><span class="back" data-mtab="mypage">← マイページに戻る</span>';
+  h+='<div class="player"><span class="plock">🔒 この端末で視聴中</span><div class="pbtn">▶</div><div class="pbar"><i></i></div></div>';
+  h+='<div class="wtitle">基礎から学ぶ歯周治療 第1回</div>';
+  h+='<div class="wmeta">講師：石原 先生　｜　<span class="vlimit">⏱ 視聴期限：あと20日</span></div>';
+  h+='<div class="wdesc">歯周治療の基礎から音波スケーラーの基本操作までを解説します。この動画は登録した端末・会員サイト内でのみ再生され、URLを取り出しても外部では再生できません。</div></div>';
+  return h;
+}
+function mpBlocked(){
+  return '<div class="blocked"><div class="bk-ic">🔒</div><h3>この端末では視聴できません</h3>'+
+    '<p>ご登録の端末数（2台）を超えています。別の端末で視聴するには、管理者に「端末のリセット」をご依頼ください。</p>'+
+    '<div class="bk-note">＝ ログイン情報を他の人に教えても、その端末では見られません</div></div>';
 }
 
 function adminView(){
@@ -740,145 +381,76 @@ function adminView(){
   var h='<div class="adm"><div class="adm-side"><div class="as-brand">WordPress 管理</div>';
   pages.forEach(function(p){h+='<div class="as-item'+(p.k===state.apage?" on":"")+'" data-apage="'+p.k+'"><span class="ai">'+p.ic+'</span>'+p.label+'</div>';});
   h+='</div><div class="adm-main">';
-  var B={ops:adOps,dash:adDash,tutor:adTutor,post:adPost,woo:adWoo,mail:adMail,bunny:adBunny,settings:adSettings};
+  var B={ops:adOps,users:adUsers,assign:adAssign,videos:adVideos,devices:adDevices,settings:adSettings};
   h+=(B[state.apage]||adOps)();
   h+='</div></div>';
   return h;
 }
-
-function pbrand(name,color,note){
-  return '<div class="pbrand"><span class="pb-ic" style="background:'+color+'">'+name.charAt(0)+'</span>'+name+'<small>'+note+'</small></div>';
-}
-function opsCard(ic,t,d,go){
-  return '<div class="ops-card" data-apage="'+go+'"><div class="oc-ic">'+ic+'</div><div class="oc-t">'+t+'</div><div class="oc-d">'+d+'</div><div class="oc-go">→ 開く</div></div>';
-}
-
-/* 先生専用のカスタム運用ページ（ハイブリッドの「1枚だけ」の追加） */
 function adOps(){
-  var X=state.moushikomi;
-  var h='<div class="am-h">かんたん運用メニュー</div><div class="am-sub">先生がよく使う操作の入口をまとめた専用ページです（この1枚だけ当方で用意）。各ボタンから実際の操作画面へ進みます。</div>';
-  h+='<div class="ops-grid">';
-  h+=opsCard("🎬","動画をアップロード","新しいセミナー動画をアップロードして保護します。","bunny");
-  h+=opsCard("🎓",X?"受講者・申込を管理":"受講者を追加・割当",X?"参加者の登録・受講状況を確認します。":"受講者を登録し、見られる動画を割り当てます。","tutor");
-  if(state.annaai) h+=opsCard("✎","セミナー案内を作る","次回セミナーの案内（テキスト／フライヤー画像）を作成・公開します。","post");
-  if(X||state.annaai) h+=opsCard("✉","参加者にメールを送る","リマインドや資料配布のメールを一斉／個別に送ります。","mail");
-  if(state.kessai) h+=opsCard("💳","入金（決済）を確認","カード決済の注文と入金状況を確認します。","woo");
-  else if(X) h+=opsCard("💴","入金を確認（振込）","銀行振込の入金を確認し、受講可能にします。","tutor");
-  h+=opsCard("📈","再生数・視聴状況を見る","動画ごとの再生回数などを確認します。","bunny");
-  h+='</div>';
-  h+='<div class="apanel" style="margin-top:14px"><div class="ap-body"><div class="adm-note">※ このページは操作をラクにするための「入口」です。実際の各操作は、下メニューの各ツール標準画面（Tutor LMS・MailPoet 等）で行います。</div></div></div>';
+  var h='<div class="am-h">運用メニュー</div><div class="am-sub">先生がよく使う操作の入口です。</div>';
+  h+='<div class="ops-grid">'+
+     opsCard("👤","アカウントを発行","参加者の会員ID/パスワードを作成し配布する。","users")+
+     opsCard("🎓","受講を割り当てる","参加したセミナー（過去分も）を受講者に紐付ける。","assign")+
+     opsCard("🎬","動画をアップロード","セミナー動画を登録し、公開・視聴期限を設定する。","videos")+
+     opsCard("📱","端末をリセット","機種変更などで端末登録を解除する。","devices")+'</div>';
+  h+='<div class="apanel" style="margin-top:14px"><div class="ap-body"><div class="adm-note">※ 参加申請・申込は<b>既存のGoogleフォーム</b>で受付（このシステムでは扱いません）。案内は公式LINE等と併用。</div></div></div>';
   return h;
 }
-
-function adDash(){
-  var h='<div class="am-h">ダッシュボード</div><div class="am-sub">WordPress の標準ホーム画面です。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>WordPress へようこそ！</span></div><div class="ap-body"><div class="adm-note">サイトの管理はここから。左のメニューから各機能に移動できます。</div></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>概要</span></div><div class="ap-body"><div class="adm-note">🎓 コース 3件　／　👥 受講者 128名　／　✎ 投稿（案内）5件</div></div></div>';
+function adUsers(){
+  var h='<div class="am-h">受講者アカウント</div><div class="am-sub">自己登録はありません。管理者が発行し、会員ID/PWを配布します。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>会員一覧</span><span class="ap-act">＋ 新規発行</span></div>';
+  h+='<table class="atable"><thead><tr><th>会員ID</th><th>氏名</th><th>所属医院</th><th>都道府県</th><th>端末</th></tr></thead><tbody>'+
+     '<tr><td>coco-0001</td><td>田中 花子</td><td>たなか歯科</td><td>東京都</td><td>2/2</td></tr>'+
+     '<tr><td>coco-0002</td><td>佐藤 美咲</td><td>（フリーランス）</td><td>大阪府</td><td>1/2</td></tr>'+
+     '<tr><td>coco-0003</td><td>鈴木 由美</td><td>すずき歯科</td><td>愛知県</td><td>0/2</td></tr>'+
+     '</tbody></table></div>';
+  h+='<div class="apanel"><div class="ap-body"><div class="adm-note">氏名・所属医院・都道府県などは<b>任意項目</b>（誰か分かるよう管理者が入力）。メール・区分・備考も保持可。ログインIDは<b>採番</b>（例：coco-0001）。</div></div></div>';
   return h;
 }
-
-/* Tutor LMS（プラグイン標準画面） */
-function adTutor(){
-  var X=state.moushikomi;
-  var h=pbrand("Tutor LMS","#1d7a6e","LMSプラグイン");
-  h+='<div class="ptabs"><span>ダッシュボード</span><span class="on">受講者</span><span>コース</span><span>登録状況</span><span>設定</span></div>';
-  h+='<div class="acards">'+acard("コース","3")+acard("受講者","128 名")+acard(X?"今回の登録":"割当済み",X?"42 名":"—")+'</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>受講者一覧</span><span class="ap-act">⬇ CSV</span></div>';
-  if(X){
-    h+='<table class="atable"><thead><tr><th>受講者</th><th>登録セミナー</th><th>登録日</th><th>進捗</th></tr></thead><tbody>'+
-       '<tr><td>田中 花子</td><td>歯周治療 第1回</td><td>7/2</td><td>視聴中 40%</td></tr>'+
-       '<tr><td>佐藤 美咲</td><td>歯周治療 第1回</td><td>7/3</td><td>未視聴 0%</td></tr>'+
-       '<tr><td>鈴木 由美</td><td>スケーリング実技</td><td>7/5</td><td>完了 100%</td></tr></tbody></table>';
-    if(!state.kessai) h+='<div class="mini-note">※ 銀行振込の入金確認は、この受講者を「登録（enroll）」する操作で反映します（決済ONの場合はWooCommerceで自動登録）。</div>';
-  } else {
-    h+='<table class="atable"><thead><tr><th>受講者</th><th>割り当てた動画</th><th>進捗</th></tr></thead><tbody>'+
-       '<tr><td>田中 花子</td><td>歯周治療 第1回 ＋1本</td><td>視聴中</td></tr>'+
-       '<tr><td>佐藤 美咲</td><td>スケーリング実技</td><td>未視聴</td></tr></tbody></table>';
-  }
-  h+='</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>コースのアクセス設定</span></div><div class="ap-body"><div class="adm-note">視聴期限：<b>'+(state.expiry?"公開から30日で自動終了（コース単位）":"期限なし")+'</b></div></div></div>';
+function adAssign(){
+  var h='<div class="am-h">受講の割当</div><div class="am-sub">参加者を、参加したセミナーに紐付けます（過去のセミナーも割当可）。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>割当を追加</span></div><div class="ap-body">'+
+     '<div class="frow"><label>受講者</label><select class="fsel"><option>coco-0001 田中 花子</option><option>coco-0002 佐藤 美咲</option></select></div>'+
+     '<div class="frow"><label>セミナー</label><select class="fsel"><option>2026/07/20 歯周治療 第1回</option><option>【過去】2026/03/15 スケーリング実技</option></select></div>'+
+     '<button class="fbtn">この受講者に割り当てる</button></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>割当状況</span></div><table class="atable"><thead><tr><th>受講者</th><th>割り当てたセミナー</th></tr></thead><tbody>'+
+     '<tr><td>田中 花子</td><td>歯周治療 第1回 ／ スケーリング実技（過去）</td></tr>'+
+     '<tr><td>佐藤 美咲</td><td>歯周治療 第1回</td></tr></tbody></table></div>';
   return h;
 }
-
-/* 投稿（Gutenbergブロックエディタ）＝セミナー案内の作成 */
-function adPost(){
-  var h='<div class="am-h">投稿の編集</div><div class="am-sub">セミナー案内は WordPress の「投稿」として作成します（フライヤーはアイキャッチ画像）。</div>';
-  h+='<div class="gb-bar"><span>下書き · 自動保存しました</span><span style="color:var(--accent);font-weight:600">公開する</span></div>';
-  h+='<div class="seg-sm"><button class="'+(state.annaiType==="text"?"on":"")+'" data-annai="text">テキストで作る</button>'+
-     '<button class="'+(state.annaiType==="flyer"?"on":"")+'" data-annai="flyer">フライヤー画像を貼る</button></div>';
-  h+='<input class="gb-title" value="歯周治療における音波スケーラーの活用">';
-  if(state.annaiType==="flyer"){
-    h+='<div class="gb-block"><div class="gb-img"><div class="upthumb"></div><div class="adm-note"><b>画像ブロック</b>：seminar_0720.jpg<br><span style="color:var(--accent)">アイキャッチ画像に設定済み</span></div></div></div>';
-    h+='<div class="gb-block">日時：7月20日(日) 13:00〜16:00／オンライン（Zoom）／定員50名</div>';
-  } else {
-    h+='<div class="gb-block">音波スケーラーの基礎理論から臨床での使い分けまで、症例を交えて解説します。<br>日時：7月20日(日) 13:00〜16:00／オンライン（Zoom）／定員50名</div>';
-    h+='<div class="gb-block" style="color:var(--text-3)">＋ ブロックを追加（画像・見出し・段落 など）</div>';
-  }
-  return h;
-}
-
-/* WooCommerce（決済ON時のみ・注文一覧） */
-function adWoo(){
-  var h=pbrand("WooCommerce","#7f54b3","決済・注文");
-  h+='<div class="ptabs"><span class="on">注文</span><span>商品</span><span>レポート</span><span>設定</span></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>注文一覧</span></div>';
-  h+='<table class="atable"><thead><tr><th>注文</th><th>お客様</th><th>セミナー</th><th>支払い</th><th>合計</th></tr></thead><tbody>'+
-     '<tr><td>#1042</td><td>田中 花子</td><td>歯周治療 第1回</td><td><span class="tag ok">支払い済み</span></td><td>¥5,500</td></tr>'+
-     '<tr><td>#1043</td><td>佐藤 美咲</td><td>歯周治療 第1回</td><td><span class="tag wait">保留中</span></td><td>¥5,500</td></tr>'+
-     '<tr><td>#1044</td><td>鈴木 由美</td><td>スケーリング実技</td><td><span class="tag ok">支払い済み</span></td><td>¥5,500</td></tr></tbody></table></div>';
-  h+='<div class="apanel"><div class="ap-body"><div class="adm-note">カード決済（PAY.JP 等）の入金は自動で「支払い済み」になり、受講者が自動でコースに登録されます。</div></div></div>';
-  return h;
-}
-
-/* MailPoet（メール配信プラグイン） */
-function adMail(){
-  var X=state.moushikomi;
-  var h=pbrand("MailPoet","#2b3a8f","メール配信");
-  h+='<div class="ptabs"><span class="on">メール</span><span>リスト</span><span>フォーム</span><span>設定</span></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>新規メールを作成</span><span class="ap-act">＋ 作成</span></div><div class="ap-body">';
-  h+='<div class="frow"><label>送信先リスト</label><select class="fsel">'+(X?'<option>7/20 セミナーの参加者（42名）</option><option>未入金の方</option>':'')+'<option>登録会員 全員（128名）</option></select></div>';
-  h+='<div class="frow"><label>件名</label><input class="finput" value="【ご案内】次回セミナーのお知らせ"></div>';
-  h+='<div class="frow"><label>本文</label><textarea class="ftext">いつもありがとうございます。次回セミナーのご案内です。</textarea></div>';
-  h+='<button class="fbtn">送信する</button></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>送信履歴</span></div><table class="atable"><thead><tr><th>件名</th><th>送信先</th><th>状態</th></tr></thead><tbody><tr><td>6月セミナーのお礼</td><td>全会員</td><td><span class="tag ok">送信済み</span></td></tr></tbody></table></div>';
-  return h;
-}
-
-/* Bunny Stream（WordPress外の管理画面） */
-function adBunny(){
-  var h=pbrand("Bunny Stream","#ff7a00","動画ホスティング（外部）");
-  h+='<div class="ext-note">⚠ これは WordPress の外にある「Bunny.net」の管理画面です。動画のアップロード・保護設定・再生数の確認はこちらで行います（WP内への埋め込み表示も可能）。</div>';
-  h+='<div class="acards">'+acard("総再生数","1,034 回")+acard("概算ユニーク","約 610")+acard("配信量","24 GB")+'</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>動画ライブラリ</span><span class="ap-act">＋ アップロード</span></div><div class="ap-body">';
-  [["基礎から学ぶ歯周治療 第1回",512,100],["スケーリング実技デモ",389,76],["症例検討カンファレンス",133,26]].forEach(function(v){
-    h+='<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:12.5px"><span>'+v[0]+'</span><span class="vl-t">'+v[1]+' 回</span></div><div class="bar"><i style="width:'+v[2]+'%"></i></div></div>';
+function adVideos(){
+  var h='<div class="am-h">セミナー動画</div><div class="am-sub">動画は Bunny にアップロードし、署名URL＋ドメイン制限で保護します。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>動画一覧</span><span class="ap-act">＋ アップロード</span></div>';
+  [["基礎から学ぶ歯周治療 第1回","公開中","ok","公開から30日"],["スケーリング実技デモ","公開中","ok","公開から30日"],["症例検討カンファレンス","下書き","wait","—"]].forEach(function(v){
+    h+='<div class="vlist-row"><div class="vl-n">'+v[0]+'　<span class="tag '+v[2]+'">'+v[1]+'</span></div><span class="vl-t">視聴期限：'+v[3]+'　｜ 編集</span></div>';
   });
-  h+='<div class="adm-note">※ ユニーク再生はセッション基準の概算です。</div></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>🔒 セキュリティ設定</span></div><div class="ap-body"><div class="adm-note">'+
-     (state.spread==="mid"?'Token Authentication：<b>ON（署名URL）</b>　／　Allowed Referrers：<b>先生のサイトのみ</b><br>→ サイト外に貼っても再生できません。':'Token Authentication：OFF　／　Allowed Referrers：未設定<br>→ 保護は WordPress ログインのみ（URLの持ち出しは防げません）。')+
-     '</div></div></div>';
+  h+='</div>';
+  h+='<div class="apanel"><div class="ap-body"><div class="adm-note">保護：<b>署名URL（Token）＋ドメイン制限 ON</b>／視聴期限：<b>公開から○日で自動終了</b>。URLを抜かれても外部では再生できません。</div></div></div>';
   return h;
 }
-
+function adDevices(){
+  var h='<div class="am-h">端末管理</div><div class="am-sub">1アカウント＝登録2台まで（PC＋スマホ）。別端末はブロック。機種変更時はここでリセット。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>会員ごとの登録端末</span></div>';
+  h+='<table class="atable"><thead><tr><th>会員ID</th><th>氏名</th><th>登録端末</th><th>最終アクセス</th><th></th></tr></thead><tbody>'+
+     '<tr><td>coco-0001</td><td>田中 花子</td><td>2/2（PC・スマホ）</td><td>7/24 10:12</td><td><span style="color:var(--accent)">端末リセット</span></td></tr>'+
+     '<tr><td>coco-0002</td><td>佐藤 美咲</td><td>1/2（スマホ）</td><td>7/23 21:40</td><td><span style="color:var(--accent)">端末リセット</span></td></tr>'+
+     '</tbody></table></div>';
+  h+='<div class="apanel"><div class="ap-body"><div class="adm-note">ブロック履歴：<b>7/22 別端末からのアクセスを1件ブロック</b>（coco-0001）。ログイン情報の共有が疑われる場合の確認に使えます。</div></div></div>';
+  return h;
+}
 function adSettings(){
-  var h='<div class="am-h">設定</div><div class="am-sub">WordPress と各プラグインの基本設定です。</div>';
-  h+='<div class="apanel"><div class="ap-h"><span>⏱ 視聴期限（Tutor LMS）</span></div><div class="ap-body"><div class="adm-note">'+
-     (state.expiry?'● <b>コースごとに「公開から○日」で自動終了</b><br>○ 期限なし':'○ コースごとに「公開から○日」で自動終了<br>● <b>期限なし</b>')+
-     '</div></div></div>';
-  h+='<div class="apanel"><div class="ap-h"><span>🔒 拡散防止（Bunny）</span></div><div class="ap-body"><div class="adm-note">'+
-     (state.spread==="mid"?'● <b>中：署名URL＋ドメイン制限</b><br>○ 弱：ログインのみ':'○ 中：署名URL＋ドメイン制限<br>● <b>弱：ログインのみ</b>')+
-     '</div></div></div>';
+  var h='<div class="am-h">設定</div><div class="am-sub">視聴・保護の基本設定。</div>';
+  h+='<div class="apanel"><div class="ap-h"><span>📱 端末しばり</span></div><div class="ap-body"><div class="adm-note">登録上限：<b>2台／アカウント</b>（変更可）。超過端末はブロック。</div></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>⏱ 視聴期限</span></div><div class="ap-body"><div class="adm-note">既定：<b>公開から30日で自動終了</b>（動画ごとに変更可）。</div></div></div>';
+  h+='<div class="apanel"><div class="ap-h"><span>🔒 動画保護（Bunny）</span></div><div class="ap-body"><div class="adm-note">署名URL（Token Authentication）＋ドメイン制限：<b>ON</b>。</div></div></div>';
   return h;
 }
 
 function renderPreview(){
   var url;
-  if(state.preview==="member"){
-    if(state.feAuth==="guest"){var gp=guestPages();if(!gp.some(function(p){return p.k===state.gpage;}))state.gpage=gp[0].k;url=findUrl(gp,state.gpage);}
-    else{var mp=memberPages();if(!mp.some(function(p){return p.k===state.mpage;}))state.mpage=mp[0].k;url=findUrl(mp,state.mpage);}
-  }
+  if(state.preview==="member"){var mp=memberPages();if(!mp.some(function(p){return p.k===state.mpage;}))state.mpage=mp[0].k;url=findUrl(mp,state.mpage);}
   else{var ap=adminPages();if(!ap.some(function(p){return p.k===state.apage;}))state.apage=ap[0].k;url=findUrl(ap,state.apage);}
-  var full=(url.indexOf("http")===0?url:"https://（先生のサイト）"+url);
+  var full=(url.indexOf("http")===0?url:"https://cocodentmedical.com"+url);
   var view=state.preview==="member"?memberView():adminView();
   var frame;
   if(state.device==="sp"){
@@ -891,16 +463,11 @@ function renderPreview(){
       '<div class="screen">'+view+'</div></div>';
   }
   document.getElementById("pv-frame").innerHTML=frame;
-  // 上位セグメント（受講者／管理者・端末）
   wireSeg("pv-seg","data-v",state.preview,function(v){state.preview=v;});
   wireSeg("pv-device","data-d",state.device,function(v){state.device=v;});
-  // ページ切替（タブ・サイドバー・動画クリック・案内形式）
   var scr=document.getElementById("pv-frame");
   Array.prototype.forEach.call(scr.querySelectorAll("[data-mtab]"),function(el){el.onclick=function(){state.mpage=el.getAttribute("data-mtab");renderAll();};});
-  Array.prototype.forEach.call(scr.querySelectorAll("[data-gtab]"),function(el){el.onclick=function(){state.gpage=el.getAttribute("data-gtab");renderAll();};});
-  Array.prototype.forEach.call(scr.querySelectorAll("[data-feauth]"),function(el){el.onclick=function(){var v=el.getAttribute("data-feauth");state.feAuth=v;if(v==="member")state.mpage="mypage";renderAll();};});
   Array.prototype.forEach.call(scr.querySelectorAll("[data-apage]"),function(el){el.onclick=function(){state.apage=el.getAttribute("data-apage");renderAll();};});
-  Array.prototype.forEach.call(scr.querySelectorAll("[data-annai]"),function(el){el.onclick=function(){state.annaiType=el.getAttribute("data-annai");renderAll();};});
 }
 function wireSeg(id,attr,current,setter){
   var seg=document.getElementById(id);
@@ -913,28 +480,13 @@ function wireSeg(id,attr,current,setter){
 
 /* ===== 利用の流れ（受講者×先生の相関） ===== */
 function computeFlow(){
-  var X=state.moushikomi, K=state.kessai, EX=(state.persona==="existing");
-  var s=[];
-  s.push({u:"会員登録（無料）／登録時に「医院所属・フリーランス」を選択",t:"（自動で会員登録）会員一覧で確認できる"});
-  if(EX){
-    s.push({u:"過去に受講した講習の紐付けを申請（または登録時に選択）",t:"過去の受講を確認し、その会員に過去講習を紐付け（手動／CSV取込）"});
-  }
-  if(X){
-    s.push({u:"講習の案内を見る",t:"案内を作成・公開（投稿／フライヤー）し、メール・LINEで告知"});
-    s.push({u:"申し込む（サイト内の申込フォーム）",t:"申込を受け取り、参加者一覧で確認"});
-    if(K){
-      s.push({u:"その場でクレジットカード決済",t:"決済は自動で確定（入金確認の手間なし）"});
-    } else {
-      s.push({u:"振込のご案内を受け取り、入金する",t:"振込のご案内を送付（自動返信／メール）"});
-      s.push({u:"（入金の確認を待つ）",t:"入金を確認して「入金済」フラグ＋受講登録（紐付け）"});
-    }
-    s.push({u:"受講（当日、講習に参加）",t:"講習を実施"});
-    s.push({u:"講習後、動画が公開され視聴できる"+(state.expiry?"（視聴期限あり）":""),t:"動画をアップロード・公開しコースに紐付け"+(state.expiry?"＋視聴期限を設定":"")});
-  } else {
-    s.push({u:"（管理者に受講者として登録される）",t:"受講者を登録し、見せる動画を割り当て"});
-    s.push({u:"動画が公開され視聴できる"+(state.expiry?"（視聴期限あり）":""),t:"動画をアップロード・公開"+(state.expiry?"＋視聴期限を設定":"")});
-  }
-  return s;
+  return [
+    {u:"管理者から会員ID／パスワードを受け取る",t:"参加者のアカウントを発行（会員ID/PW）して配布"},
+    {u:"（受講の割当を待つ）",t:"参加したセミナーを受講者に割当（過去参加分も紐付け可）"},
+    {u:"配布情報でログイン → 使う端末が登録される（PC＋スマホ 最大2台）",t:"（初回ログインで端末が自動登録される）"},
+    {u:"自分が参加したセミナーの動画を視聴（視聴期限内）",t:"動画をアップロード・公開＋視聴期限を設定"},
+    {u:"登録外の端末では視聴不可 → 管理者に連絡",t:"別端末はブロック。機種変更時などは端末をリセット"}
+  ];
 }
 function renderFlow(){
   var st=computeFlow();
@@ -945,10 +497,9 @@ function renderFlow(){
        '<div class="fcell t"><div class="fc-role">先生</div><div class="fc-txt">'+s.t+'</div></div></div>';
   });
   document.getElementById("flow").innerHTML=h;
-  wireSeg("pv-persona","data-p",state.persona,function(v){state.persona=v;});
 }
 
-function renderAll(){renderToggles();renderBanner();renderStack();renderReqs();renderCost();renderPreview();renderFlow();}
+function renderAll(){renderSpec();renderPreview();renderFlow();}
 renderAll();
 </script>
 </body>
